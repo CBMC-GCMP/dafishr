@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup, eval = FALSE}
+```{r setup}
 library(dafishr)
 ```
 
@@ -61,7 +61,7 @@ Once the dataset is wrangled, there are some other preprocessing steps to follow
 ```{r}
 
 data("mx_inland") # Shapefile of inland Mexico area
-vms_cleaned_land <- clean_land_points(vms_cleaned)
+vms_cleaned_land <- clean_land_points(vms_cleaned, mx_inland)
 
 ```
 
