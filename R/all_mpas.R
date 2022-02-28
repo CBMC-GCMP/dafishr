@@ -2,7 +2,7 @@
 #'
 #' A `sf` object containing shapefiles of MPA polygons in Mexico
 #'
-#' @format A simple feture collection with 24 features and 5 fields
+#' @format A simple feature collection with 24 features and 5 fields
 #' \describe{
 #'   \item{NOMBRE}{Name of the MPA in Spanish}
 #'   \item{CAT_DECRET}{Decree category, which define the type of MPA}
