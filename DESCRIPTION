@@ -1,10 +1,12 @@
 Package: dafishr
-Title: Download, Wrangle, and Analyse VMS data.
+Title: Download, Wrangle, and Analyse VMS data
 Version: 0.0.0.9000
 Authors@R: 
     person("Fabio", "Favoretto", , "fabio@gocmarineprogram.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6493-4254"))
-Description: The package allows to download VMS data from Mexican government, it cleans the data, and provides tools to analise them
+Description: The package allows to download, clean and analyse raw VMS data from Mexican government.
+   First you can use the vms_download function to download raw data, or you can use the sample_dataset provided
+   within the package. You can follow the tutorial in the vignette available at: link. 
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

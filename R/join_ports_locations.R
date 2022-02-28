@@ -41,6 +41,8 @@
 #'   facet_wrap(~location) +
 #'   theme_bw()
 
+utils::globalVariables(c(".", "id", "location", "geometry"))
+
 join_ports_locations <-
   function(x, buffer_size = 0.15) {
     if (!"id" %in% colnames(x)) {
@@ -49,7 +51,6 @@ join_ports_locations <-
     } else {
       NULL
     }
-    utils::globalVariables(c(".", "id", "location", "geometry"))
     sf::sf_use_s2(FALSE)
     utils::data("mx_ports", envir = environment())
 

@@ -41,14 +41,15 @@
 #'   theme(legend.position = "")
 
 
+utils::globalVariables(c(
+            "all_mpas", "NOMBRE", "CAT_DECRET",
+            "ESTADOS", "MUNICIPIOS", "REGION",
+            "zone", ".", "geometry"
+))
 
 join_mpa_data <- function(x) {
   utils::data("all_mpas", envir = environment())
-            utils::globalVariables(c(
-                        "all_mpas", "NOMBRE", "CAT_DECRET",
-                        "ESTADOS", "MUNICIPIOS", "REGION",
-                        "zone", ".", "geometry"
-            ))
+
   x_sf <- sf::st_as_sf(x, coords = c("longitude", "latitude"), crs = 4326, remove = F)
 
   res <- sf::st_join(x_sf, all_mpas, left = T)
