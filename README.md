@@ -6,7 +6,17 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of dafishr is to …
+The goal of dafishr is to provide an easy way to download VMS and
+analyse data from the Sismep of the Mexican Fishery Commission available
+at [Datos
+Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/resource/309e872a-dbca-4962-b14f-f0da833abebe)
+initiative. Within the package you can find tools that allows you to
+download VMS data, wrangle and clean raw data, and analyse tracks.
+
+You can follow the instruction below using a sample dataset that comes
+along with the package, or you can use the function on data you can
+download yourself by using the `vms_download()` function. See ?vms_data
+for details on its usage.
 
 ## Installation
 
@@ -15,41 +25,44 @@ You can install the development version of dafishr from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("Fabbiologia/dafishr")
+devtools::install_github("CBMC-GCMP/dafishr")
 ```
 
-## Example
+## Downloading raw data on your computer
 
-This is a basic example which shows you how to solve a common problem:
+VMS data comes organized by year. The function `vms_download()`
+automatically downloads it and store into the working directory in a
+`VMS-data` folder. Within the folder raw data are organized by monthly
+folders (with names in Spanish) that contain several `.csv` files that
+usually store byweekly data intervals. Each file have different rows and
+some have different column names. For that we highly recommend to use
+the `vms_clean()` function. The latter corrects several inconsistencies
+within the raw data. If you have any suggestion or spot some errors we
+will be very pleased if you create an issue.
+
+The function below downloads data from the year 2019.
 
 ``` r
 library(dafishr)
-## basic example code
+
+vms_download(2019)
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+## Using the cleaning functions
+
+The first `vms_clean()` function works on the VMS `data.frame`. You can
+either load downloaded data or use the `sample_dataset` that you can
+call and clean like so:
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(dafishr)
+data("sample_dataset")
+vms_cleaned <- vms_clean(sample_dataset)
+#> [1] 969
+#> Cleaned: 969 empty rows from data!
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/v1/examples>.
+The `vms_clean()` function returns a message with the number of rows
+that were cleaned because they contained NULL values in coordinates.
 
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+You can find a complete tutorial at:
