@@ -2,7 +2,7 @@
 title: "Where to start"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{dafisr}
+  %\VignetteIndexEntry{Where to start}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
