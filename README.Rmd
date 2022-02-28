@@ -23,41 +23,27 @@ knitr::opts_chunk$set(
 
 The goal of dafishr is to provide an easy way to download VMS and analyse data from the Sismep of the Mexican Fishery Commission available at [Datos Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/resource/309e872a-dbca-4962-b14f-f0da833abebe) initiative. Within the package you can find tools that allows you to download VMS data, wrangle and clean raw data, and analyse tracks.
 
+The VMS stands for Vessel Monitoring System, which is adopted on industrial fishing vessels to monitor fishing activity. These data are very important to understand the fishing activity within a country, its dynamics in time and space, and to monitor the activity within Marine Protected Areas (MPAs). Along with data from VMS we also provide layers that are used to clean and map the information. We are currently working on a scientific manuscript which will be related to this work that is currently under review.
+
 You can follow the instruction below using a sample dataset that comes along with the package, or you can use the function on data you can download yourself by using the `vms_download()` function. See ?vms_data for details on its usage.
 
 ## Installation
 
-You can install the development version of dafishr from [GitHub](https://github.com/) with:
+You can install the development version of dafishr from our [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("CBMC-GCMP/dafishr")
 ```
 
-## Downloading raw data on your computer
+## Where to start
 
-VMS data comes organized by year. The function `vms_download()` automatically downloads it and store into the working directory in a `VMS-data` folder. Within the folder raw data are organized by monthly folders (with names in Spanish) that contain several `.csv` files that usually store byweekly data intervals. Each file have different rows and some have different column names. For that we highly recommend to use the `vms_clean()` function. The latter corrects several inconsistencies within the raw data. If you have any suggestion or spot some errors we will be very pleased if you create an issue.
+You can start using `dafishr` suit of functions using the `sample_dataset` provided with this package, or you can download your own raw-data files using the `vms_download` function. Further details are explained in the [documentation vignette](https://cbmc-gcmp.github.io/dafishr/index.html) for this package. You can see the suit of data and functions available within the package [here](https://cbmc-gcmp.github.io/dafishr/reference/index.html#all-functions).
 
-The function below downloads data from the year 2019.
+## Dependencies
 
-```{r example, eval=FALSE, message=FALSE, warning=FALSE}
-library(dafishr)
+This package follows the `tidyverse` programming style and depends on several package of the family that will be downloaded automatically once installed. Some functions can be applied to a more general object, but these are specifically built for the format of the raw data of the VMS form CONAPESCA (Mexican Fishery Commission). Therefore, these package focused mostly on that format to help user analyse and report data.
 
-vms_download(2019)
+## How to contribute
 
-```
-
-## Using the cleaning functions
-
-The first `vms_clean()` function works on the VMS `data.frame`. You can either load downloaded data or use the `sample_dataset` that you can call and clean like so:
-
-```{r}
-library(dafishr)
-data("sample_dataset")
-vms_cleaned <- vms_clean(sample_dataset)
-
-```
-
-The `vms_clean()` function returns a message with the number of rows that were cleaned because they contained NULL values in coordinates.
-
-You can find a complete tutorial at: <https://cbmc-gcmp.github.io/dafishr/index.html>
+The workflow provided here is a work in progress and there are probably some errors we haven't spotted or considered up to now. If you feel you can contribute to this effort feel free to do so by creating a pull request. If you are an undergrad and you which to help or develop scientific projects using this data you are welcome to contact us through, you can find contact information of the main author [here](https://github.com/Fabbiologia), or via [twitter](https://twitter.com/FabioFavoretto).
