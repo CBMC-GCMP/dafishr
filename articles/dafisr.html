@@ -77,18 +77,13 @@
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/knitr/man/opts_chunk.html" class="external-link">opts_chunk</a></span><span class="op">$</span><span class="fu">set</span><span class="op">(</span>
-  collapse <span class="op">=</span> <span class="cn">TRUE</span>,
-  comment <span class="op">=</span> <span class="st">"#&gt;"</span>
-<span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Fabbiologia/dafishr" class="external-link">dafishr</a></span><span class="op">)</span></code></pre></div>
 <div class="section level2">
 <h2 id="downloading-raw-data-on-your-computer">Downloading raw data on your computer<a class="anchor" aria-label="anchor" href="#downloading-raw-data-on-your-computer"></a>
 </h2>
 <p>VMS data comes organized by year. The function vms_download() automatically downloads it and store into the working directory in a VMS-data folder. Within the folder raw data are organized by monthly folders (with names in Spanish) that contain several .csv files that usually store byweekly data intervals. Each file have different rows and some have different column names. For that we highly recommend to use the vms_clean() function. The latter corrects several inconsistencies within the raw data. If you have any suggestion or spot some errors we will be very pleased if you create an issue.</p>
 <p>The function below downloads data from the year 2019.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Fabbiologia/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/vms_download.html">vms_download</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span></code></pre></div>
@@ -97,8 +92,9 @@
 <h2 id="using-the-cleaning-functions">Using the cleaning functions<a class="anchor" aria-label="anchor" href="#using-the-cleaning-functions"></a>
 </h2>
 <p>The first vms_clean() function works on the VMS data.frame. You can either load downloaded data or use the sample_dataset that you can call and clean like so:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Fabbiologia/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Fabbiologia/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sample_dataset"</span><span class="op">)</span>
 <span class="va">vms_cleaned</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vms_clean.html">vms_clean</a></span><span class="op">(</span><span class="va">sample_dataset</span><span class="op">)</span></code></pre></div>
 <p>The vms_clean() function returns a message with the number of rows that were cleaned because they contained <code>NULL</code> values in coordinates.</p>
@@ -107,23 +103,26 @@
 <h2 id="spatial-wrangling">Spatial wrangling<a class="anchor" aria-label="anchor" href="#spatial-wrangling"></a>
 </h2>
 <p>Once the dataset is wrangled, there are some other preprocessing steps to follow. First, all points that fall inland should be eliminated. This is because VMS data are vessels, thus points falling inland are errors in data registration. For that we will upload the <code>mx_inland</code> shapefile which helps eliminating all the points within a cerain distance from the coastline.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_inland"</span><span class="op">)</span> <span class="co"># Shapefile of inland Mexico area</span>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_inland"</span><span class="op">)</span> <span class="co"># Shapefile of inland Mexico area</span>
 <span class="va">vms_cleaned_land</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_land_points.html">clean_land_points</a></span><span class="op">(</span><span class="va">vms_cleaned</span>, <span class="va">mx_inland</span><span class="op">)</span></code></pre></div>
 <div class="section level3">
 <h3 id="associating-port-data">Associating port data<a class="anchor" aria-label="anchor" href="#associating-port-data"></a>
 </h3>
 <p>Once all land points are eliminated, we can use the <code><a href="../reference/join_ports_locations.html">join_ports_locations()</a></code> function to label all the points where a vessel was inside a port or a marina. We achieve this by using the <code>mx_ports</code> shapefile that will be used to create a buffer around each port or marina location. Then each VMS point that falls within these buffers will be labelled as <code>at_port</code> or <code>at_sea</code> in a new column that will be automatically called <code>location</code>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_ports"</span><span class="op">)</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_ports"</span><span class="op">)</span>
 
 <span class="co"># If you are just testing, it is a good idea to subsample... it takes a while on the full data!</span>
 
 <span class="va">vms_subset</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_n</a></span><span class="op">(</span><span class="va">vms_cleaned</span>, <span class="fl">1000</span><span class="op">)</span>
 <span class="va">with_ports</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/join_ports_locations.html">join_ports_locations</a></span><span class="op">(</span><span class="va">vms_subset</span><span class="op">)</span></code></pre></div>
 <p>Now we can check the results in a map:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">with_ports_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">with_ports</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">with_ports_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">with_ports</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_shape"</span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
