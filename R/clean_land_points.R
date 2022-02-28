@@ -1,4 +1,4 @@
-#' Clean points falling inland
+#'  Clean points falling inland
 #'
 #' This functions eliminates points falling inland by using `st_difference()` function from the `sf` package.
 #'
@@ -48,8 +48,9 @@
 #'
 #' # in the provided example only few inland points are eliminated.
 #' # There are more evident one within historical data.
-utils::globalVariables(c("mx_inland", "geometry"))
+
 clean_land_points <- function(x) {
+  utils::globalVariables(c("mx_inland", "geometry"))
   sf::sf_use_s2(FALSE)
 
   utils::data("mx_inland", envir = environment())

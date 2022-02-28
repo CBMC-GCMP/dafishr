@@ -26,9 +26,10 @@
 #' data("sample_dataset")
 #' cleaned_vms <- vms_clean(sample_dataset)
 #' head(cleaned_vms)
-utils::globalVariables(c("any_of", "latitude", "longitude", "direction", "speed"))
 
 vms_clean <- function(path_to_data) {
+  utils::globalVariables(c("any_of", "latitude", "longitude", "direction", "speed"))
+
   suppressWarnings(
     if (is.character(path_to_data) == TRUE) {
       x <- readr::read_csv(path_to_data,
