@@ -15,8 +15,9 @@
 #'
 #' # With general data
 #' x <- data.frame(
-#'             longitude = runif(1000, min=-150, max=-80),
-#'             latitude = runif(1000, min=15, max=35))
+#'   longitude = runif(1000, min = -150, max = -80),
+#'   latitude = runif(1000, min = 15, max = 35)
+#' )
 #'
 #'
 #' join_ports_locations(x)
@@ -35,53 +36,42 @@
 #' data("mx_shape")
 #' library(ggplot2)
 #' ggplot(mx_shape) +
-#'             geom_sf(col = "gray90") +
-#'             geom_sf(data = with_ports_sf, aes(col = location)) +
-#'             facet_wrap(~location) +
-#'             theme_bw()
-#'
+#'   geom_sf(col = "gray90") +
+#'   geom_sf(data = with_ports_sf, aes(col = location)) +
+#'   facet_wrap(~location) +
+#'   theme_bw()
 utils::globalVariables(c(".", "id", "location", "geometry"))
 
 join_ports_locations <-
-        function(x, buffer_size = 0.15) {
+  function(x, buffer_size = 0.15) {
+    if (!"id" %in% colnames(x)) {
+      cat("creating ids...")
+      x <- x %>% tibble::rowid_to_column(., "id")
+    } else {
+      NULL
+    }
 
-                    if(!"id" %in% colnames(x)) {
-                                cat("creating ids...")
-                                x <- x %>% tibble::rowid_to_column(., "id")
+    sf::sf_use_s2(FALSE)
+    utils::data("mx_ports", envir = environment())
 
-                    } else {
+    mx_ports <- sf::st_transform(mx_ports, crs = 4326)
+    buffer <- sf::st_buffer(mx_ports, buffer_size)
+    buffer <- sf::st_make_valid(buffer)
 
-                        NULL
-                    }
+    x_sf <- sf::st_as_sf(
+      as.data.frame(x),
+      coords = c("longitude", "latitude"),
+      crs = 4326,
+      remove = F
+    )
 
-                    sf::sf_use_s2(FALSE)
-                    utils::data("mx_ports", envir = environment())
+    at_sea <- sf::st_difference(x_sf, sf::st_union(buffer))
+    at_sea <- at_sea %>%
+      dplyr::mutate(location = "at_sea") %>%
+      dplyr::select(id, location)
 
-                    mx_ports <- sf::st_transform(mx_ports, crs = 4326)
-                    buffer <- sf::st_buffer(mx_ports, buffer_size)
-                    buffer <- sf::st_make_valid(buffer)
-
-                    x_sf <- sf::st_as_sf(
-                                as.data.frame(x),
-                                coords = c("longitude", "latitude"),
-                                crs = 4326,
-                                remove = F
-                    )
-
-                    at_sea <- sf::st_difference(x_sf, sf::st_union(buffer))
-                    at_sea <- at_sea %>%
-                                dplyr::mutate(location = "at_sea") %>%
-                                dplyr::select(id, location)
-
-                    merge(x, at_sea, by = "id", all.x = T) %>%
-                                as.data.frame() %>%
-                                dplyr::mutate(location = tidyr::replace_na(location, "port_visit")) %>%
-                                dplyr::select(-geometry)
-
-        }
-
-
-
-
-
-
+    merge(x, at_sea, by = "id", all.x = T) %>%
+      as.data.frame() %>%
+      dplyr::mutate(location = tidyr::replace_na(location, "port_visit")) %>%
+      dplyr::select(-geometry)
+  }

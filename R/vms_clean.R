@@ -20,100 +20,95 @@
 #' # Using a path to a downloaded raw file
 #' \dontrun{
 #' vms_clean("VMS-data/VMS-data/RLMSEP_2019/1.- ENERO/01-10-ENE-2019.csv")
-#'}
+#' }
 #'
-#'# Using sample dataset, or a data.frame already stored as an object
+#' # Using sample dataset, or a data.frame already stored as an object
 #' data("sample_dataset")
 #' cleaned_vms <- vms_clean(sample_dataset)
 #' head(cleaned_vms)
-#'
-
 utils::globalVariables(c("any_of", "latitude", "longitude", "direction", "speed"))
 
 vms_clean <- function(path_to_data) {
-            suppressWarnings(
+  suppressWarnings(
+    if (is.character(path_to_data) == TRUE) {
+      x <- readr::read_csv(path_to_data,
+        na = c("NA", "<NA>", "", " ", "?", "NULL"),
+        col_types = vroom::cols(),
+        locale = readr::locale(encoding = "latin1")
+      )
 
-            if(is.character(path_to_data) == TRUE) {
+      names(x) <- c(
+        "vessel_name",
+        "RNP",
+        "port_base",
+        "owner",
+        "date",
+        "latitude",
+        "longitude",
+        "speed",
+        "direction"
+      )
 
+      res <- x %>%
+        dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) %>%
+        dplyr::mutate(year = lubridate::year(date)) %>%
+        dplyr::mutate(month = lubridate::month(date)) %>%
+        dplyr::mutate(day = lubridate::day(date)) %>%
+        tibble::rowid_to_column(., "id") %>%
+        dplyr::relocate(any_of(c("id", "year", "month", "day", "date"))) %>%
+        dplyr::filter(!is.na(latitude)) %>%
+        dplyr::filter(!is.na(longitude)) %>%
+        dplyr::mutate(direction = as.numeric(direction)) %>%
+        dplyr::mutate(speed = as.numeric(speed)) %>%
+        dplyr::mutate(file_name = stringr::str_remove(path_to_data, "data/VMS-data/raw//"))
 
+      empty_coordinates <- x %>%
+        dplyr::filter(is.na(latitude)) %>%
+        dplyr::filter(is.na(longitude))
+      cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data!"))
+      res
+    } else if (is.data.frame(path_to_data) == TRUE) {
+      x <- path_to_data
 
-                        x <- readr::read_csv(path_to_data,
-                                             na = c("NA", "<NA>", "", " ", "?", "NULL"),
-                                             col_types = vroom::cols(),
-                                             locale = readr::locale(encoding = "latin1"))
+      names(x) <- c(
+        "vessel_name",
+        "RNP",
+        "port_base",
+        "owner",
+        "date",
+        "latitude",
+        "longitude",
+        "speed",
+        "direction"
+      )
 
-                        names(x) <- c("vessel_name",
-                                      "RNP",
-                                      "port_base",
-                                      "owner",
-                                      "date",
-                                      "latitude",
-                                      "longitude",
-                                      "speed",
-                                      "direction")
+      res <- x %>%
+        dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) %>%
+        dplyr::mutate(year = lubridate::year(date)) %>%
+        dplyr::mutate(month = lubridate::month(date)) %>%
+        dplyr::mutate(day = lubridate::day(date)) %>%
+        tibble::rowid_to_column(., "id") %>%
+        dplyr::relocate(any_of(c("id", "year", "month", "day", "date"))) %>%
+        dplyr::mutate(
+          latitude = as.numeric(latitude),
+          longitude = as.numeric(longitude)
+        ) %>%
+        dplyr::filter(!is.na(latitude)) %>%
+        dplyr::filter(!is.na(longitude)) %>%
+        dplyr::mutate(direction = as.numeric(direction)) %>%
+        dplyr::mutate(speed = as.numeric(speed))
 
-                        res <- x %>%
-                                    dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) %>%
-                                    dplyr::mutate(year = lubridate::year(date)) %>%
-                                    dplyr::mutate(month = lubridate::month(date)) %>%
-                                    dplyr::mutate(day = lubridate::day(date)) %>%
-                                    tibble::rowid_to_column(., "id") %>%
-                                    dplyr::relocate(any_of(c("id", "year", "month", "day", "date"))) %>%
-                                    dplyr::filter(!is.na(latitude)) %>%
-                                    dplyr::filter(!is.na(longitude)) %>%
-                                    dplyr::mutate(direction = as.numeric(direction)) %>%
-                                    dplyr::mutate(speed = as.numeric(speed)) %>%
-                                    dplyr::mutate(file_name = stringr::str_remove(path_to_data, "data/VMS-data/raw//"))
-
-                        empty_coordinates <- x %>%
-                                    dplyr::filter(is.na(latitude)) %>%
-                                    dplyr::filter(is.na(longitude))
-                        cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data!"))
-                        res
-            } else if(is.data.frame(path_to_data) == TRUE) {
-
-
-                        x <- path_to_data
-
-                        names(x) <- c("vessel_name",
-                                      "RNP",
-                                      "port_base",
-                                      "owner",
-                                      "date",
-                                      "latitude",
-                                      "longitude",
-                                      "speed",
-                                      "direction")
-
-                        res <- x %>%
-                                    dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) %>%
-                                    dplyr::mutate(year = lubridate::year(date)) %>%
-                                    dplyr::mutate(month = lubridate::month(date)) %>%
-                                    dplyr::mutate(day = lubridate::day(date)) %>%
-                                    tibble::rowid_to_column(., "id") %>%
-                                    dplyr::relocate(any_of(c("id", "year", "month", "day", "date"))) %>%
-                                    dplyr::mutate(latitude = as.numeric(latitude),
-                                                  longitude = as.numeric(longitude)) %>%
-                                    dplyr::filter(!is.na(latitude)) %>%
-                                    dplyr::filter(!is.na(longitude)) %>%
-                                    dplyr::mutate(direction = as.numeric(direction)) %>%
-                                    dplyr::mutate(speed = as.numeric(speed))
-
-                        empty_coordinates <- x %>%
-                                    dplyr::mutate(latitude = as.numeric(latitude),
-                                                  longitude = as.numeric(longitude)) %>%
-                                    dplyr::filter(is.na(latitude)) %>%
-                                    dplyr::filter(is.na(longitude))
-                        cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
-                        res
-
-            } else {
-                        cat("Data must be a path to folder or data.frame object")
-            }
-
-)
-
+      empty_coordinates <- x %>%
+        dplyr::mutate(
+          latitude = as.numeric(latitude),
+          longitude = as.numeric(longitude)
+        ) %>%
+        dplyr::filter(is.na(latitude)) %>%
+        dplyr::filter(is.na(longitude))
+      cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
+      res
+    } else {
+      cat("Data must be a path to folder or data.frame object")
+    }
+  )
 }
-
-
-

@@ -25,7 +25,7 @@
 #' # Plotting data
 #' # Points NOT inside MPA are removed to reduce data size
 #' vms_mpas_sub <- vms_mpas %>%
-#'             dplyr::filter(zone != "open area")
+#'   dplyr::filter(zone != "open area")
 #'
 #' vms_mpas_sf <- sf::st_as_sf(vms_mpas_sub, coords = c("longitude", "latitude"), crs = 4326)
 #'
@@ -35,34 +35,34 @@
 #' # Map
 #' library(ggplot2)
 #' ggplot(mx_shape, col = "gray90") +
-#'             geom_sf(data = all_mpas, fill = "gray60") +
-#'             geom_sf(data = vms_mpas_sf, aes(col = zone)) +
-#'             theme_void() +
-#'             theme(legend.position = "")
-#'
-#'
-utils::globalVariables(c("all_mpas", "NOMBRE", "CAT_DECRET",
-                         "ESTADOS", "MUNICIPIOS", "REGION",
-                         "zone", ".", "geometry"))
+#'   geom_sf(data = all_mpas, fill = "gray60") +
+#'   geom_sf(data = vms_mpas_sf, aes(col = zone)) +
+#'   theme_void() +
+#'   theme(legend.position = "")
+utils::globalVariables(c(
+  "all_mpas", "NOMBRE", "CAT_DECRET",
+  "ESTADOS", "MUNICIPIOS", "REGION",
+  "zone", ".", "geometry"
+))
 
 
 join_mpa_data <- function(x) {
+  utils::data("all_mpas", envir = environment())
 
-        utils::data("all_mpas", envir = environment())
+  x_sf <- sf::st_as_sf(x, coords = c("longitude", "latitude"), crs = 4326, remove = F)
 
-        x_sf <- sf::st_as_sf(x, coords = c("longitude", "latitude"), crs = 4326, remove = F)
+  res <- sf::st_join(x_sf, all_mpas, left = T)
 
-        res <- sf::st_join(x_sf, all_mpas, left = T)
-
-        res <- res %>%
-                dplyr::rename(zone = NOMBRE,
-                       mpa_decree = CAT_DECRET,
-                       state = ESTADOS,
-                       municipality = MUNICIPIOS,
-                       region = REGION) %>%
-                dplyr::mutate(zone = tidyr::replace_na(zone, "open area")) %>%
-                as.data.frame(.) %>%
-                dplyr::select(-geometry)
-        res
+  res <- res %>%
+    dplyr::rename(
+      zone = NOMBRE,
+      mpa_decree = CAT_DECRET,
+      state = ESTADOS,
+      municipality = MUNICIPIOS,
+      region = REGION
+    ) %>%
+    dplyr::mutate(zone = tidyr::replace_na(zone, "open area")) %>%
+    as.data.frame(.) %>%
+    dplyr::select(-geometry)
+  res
 }
-
