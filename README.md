@@ -70,3 +70,4 @@ The `vms_clean()` function returns a message with the number of rows
 that were cleaned because they contained NULL values in coordinates.
 
 You can find a complete tutorial at:
+<https://cbmc-gcmp.github.io/dafishr/index.html>
