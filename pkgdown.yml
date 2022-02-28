@@ -1,0 +1,10 @@
+pandoc: 2.7.3
+pkgdown: 2.0.2
+pkgdown_sha: ~
+articles:
+  dafisr: dafisr.html
+last_built: 2022-02-28T16:00Z
+urls:
+  reference: https://cbmc-gcmp.github.io/dafishr/reference
+  article: https://cbmc-gcmp.github.io/dafishr/articles
+
