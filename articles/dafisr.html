@@ -51,7 +51,7 @@
 
       <ul class="navbar-nav">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/Fabbiologia/dafishr/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/CBMC-GCMP/dafishr/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -70,7 +70,7 @@
       <img src="" class="logo" alt=""><h1>Where to start</h1>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/Fabbiologia/dafishr/blob/HEAD/vignettes/dafisr.Rmd" class="external-link"><code>vignettes/dafisr.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/CBMC-GCMP/dafishr/blob/HEAD/vignettes/dafisr.Rmd" class="external-link"><code>vignettes/dafisr.Rmd</code></a></small>
       <div class="d-none name"><code>dafisr.Rmd</code></div>
     </div>
 
@@ -82,7 +82,7 @@
 <p>VMS data comes organized by year. The function vms_download() automatically downloads it and store into the working directory in a VMS-data folder. Within the folder raw data are organized by monthly folders (with names in Spanish) that contain several .csv files that usually store byweekly data intervals. Each file have different rows and some have different column names. For that we highly recommend to use the vms_clean() function. The latter corrects several inconsistencies within the raw data. If you have any suggestion or spot some errors we will be very pleased if you create an issue.</p>
 <p>The function below downloads data from the year 2019.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Fabbiologia/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/CBMC-GCMP/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/vms_download.html">vms_download</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span></code></pre></div>
 </div>
@@ -92,7 +92,7 @@
 <p>The first vms_clean() function works on the VMS data.frame. You can either load downloaded data or use the sample_dataset that you can call and clean like so:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/Fabbiologia/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/CBMC-GCMP/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sample_dataset"</span><span class="op">)</span>
 <span class="va">vms_cleaned</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vms_clean.html">vms_clean</a></span><span class="op">(</span><span class="va">sample_dataset</span><span class="op">)</span></code></pre></div>
 <p>The vms_clean() function returns a message with the number of rows that were cleaned because they contained <code>NULL</code> values in coordinates.</p>
