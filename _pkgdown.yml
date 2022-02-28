@@ -1,0 +1,5 @@
+url: https://cbmc-gcmp.github.io/dafishr
+template:
+  bootstrap: 5
+  bootswatch: cyborg
+  theme: arrow-dark
