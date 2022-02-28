@@ -14,10 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(dafishr)
-```
-
 ## Downloading raw data on your computer
 
 VMS data comes organized by year. The function vms_download() automatically
@@ -72,6 +68,7 @@ Once all land points are eliminated, we can use the `join_ports_locations()` fun
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
 
+
 data("mx_ports")
 
 # If you are just testing, it is a good idea to subsample... it takes a while on the full data!
@@ -85,14 +82,17 @@ Now we can check the results in a map:
 
 ```{r eval=FALSE}
 
-with_ports_sf <- sf::st_as_sf(with_ports, coords = c("longitude", "latitude"), crs = 4326)
+with_ports_sf <- sf::st_as_sf(with_ports,
+                         coords = c("longitude", "latitude"),
+                         crs = 4326)
 
 data("mx_shape")
+
 library(ggplot2)
 ggplot(mx_shape) +
-  geom_sf(col = "gray90") +
-  geom_sf(data = with_ports_sf, aes(col = location)) +
-  facet_wrap(~location) +
-  theme_bw()
+            geom_sf(col = "gray90") +
+            geom_sf(data = with_ports_sf, aes(col = location)) +
+            facet_wrap( ~ location) +
+            theme_bw()
 ```
 
