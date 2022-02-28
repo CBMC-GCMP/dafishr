@@ -4,12 +4,12 @@
 \alias{join_mpa_data}
 \title{Detect fishing vessel presence within MPA polygons in Mexico}
 \usage{
-join_mpa_data(x)
+join_mpa_data(x, all_mpas)
 }
 \arguments{
 \item{x}{A data.frame with VMS data that must contain columns longitude and latitude}
 
-\item{all_mpas}{A shape file that contains all MPA polygons in Mexico}
+\item{all_mpas}{A shape file that contains all MPA polygons in Mexico you can upload this using \code{data("all_mpas")}}
 }
 \value{
 A data.frame
@@ -29,8 +29,9 @@ and \code{region} contains the overall location of the MPA (in Spanish)
 
 # Use sample_dataset
 data("sample_dataset")
+data("all_mpas")
 vms_cleaned <- vms_clean(sample_dataset)
-vms_mpas <- join_mpa_data(vms_cleaned)
+vms_mpas <- join_mpa_data(vms_cleaned, all_mpas)
 
 
 # Plotting data
@@ -40,8 +41,8 @@ vms_mpas_sub <- vms_mpas \%>\%
 
 vms_mpas_sf <- sf::st_as_sf(vms_mpas_sub, coords = c("longitude", "latitude"), crs = 4326)
 
-# Loading Mexico and MPAs shapefiles
-data("mx_shape", "all_mpas")
+# Loading Mexico shapefile
+data("mx_shape")
 
 # Map
 library(ggplot2)

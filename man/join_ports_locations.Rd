@@ -4,14 +4,14 @@
 \alias{join_ports_locations}
 \title{Label points when vessel is at port}
 \usage{
-join_ports_locations(x, buffer_size = 0.15)
+join_ports_locations(x, mx_ports, buffer_size = 0.15)
 }
 \arguments{
 \item{x}{a data.frame with latitude and longitude coordinates}
 
-\item{buffer_size}{a number (double) indicating the size of the buffer for the ports to implement}
+\item{mx_ports}{is a shapefile of point data storing coordinates of ports and marina in Mexico, you can upload this using \code{data("mx_ports")}}
 
-\item{mx_ports}{is a shapefile of point data storing coordinates of ports and marina in Mexico}
+\item{buffer_size}{a number (double) indicating the size of the buffer for the ports to implement}
 }
 \value{
 A data.frame
@@ -25,18 +25,10 @@ The function adds a \code{location} column indicating if the vessel was at port 
 }
 \examples{
 
-# With general data
-x <- data.frame(
-  longitude = runif(1000, min = -150, max = -80),
-  latitude = runif(1000, min = 15, max = 35)
-)
-
-
-join_ports_locations(x)
-
 # With sample data
 
 data("sample_dataset")
+data("mx_ports")
 vms_cleaned <- vms_clean(sample_dataset)
 
 # It is a good idea to subsample when testing... it takes a while on the full data!

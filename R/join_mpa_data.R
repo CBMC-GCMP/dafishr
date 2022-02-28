@@ -9,17 +9,20 @@
 #' and `region` contains the overall location of the MPA (in Spanish)
 #'
 #' @param x A data.frame with VMS data that must contain columns longitude and latitude
-#' @param all_mpas A shape file that contains all MPA polygons in Mexico
+#' @param all_mpas A shape file that contains all MPA polygons in Mexico you can upload this using `data("all_mpas")`
 #' @return A data.frame
 #' @export
+#' @importFrom dplyr %>%
+#' @importFrom rlang .data
 #'
 #' @examples
 #'
 #'
 #' # Use sample_dataset
 #' data("sample_dataset")
+#' data("all_mpas")
 #' vms_cleaned <- vms_clean(sample_dataset)
-#' vms_mpas <- join_mpa_data(vms_cleaned)
+#' vms_mpas <- join_mpa_data(vms_cleaned, all_mpas)
 #'
 #'
 #' # Plotting data
@@ -29,8 +32,8 @@
 #'
 #' vms_mpas_sf <- sf::st_as_sf(vms_mpas_sub, coords = c("longitude", "latitude"), crs = 4326)
 #'
-#' # Loading Mexico and MPAs shapefiles
-#' data("mx_shape", "all_mpas")
+#' # Loading Mexico shapefile
+#' data("mx_shape")
 #'
 #' # Map
 #' library(ggplot2)
@@ -41,14 +44,8 @@
 #'   theme(legend.position = "")
 
 
-utils::globalVariables(c(
-            "all_mpas", "NOMBRE", "CAT_DECRET",
-            "ESTADOS", "MUNICIPIOS", "REGION",
-            "zone", ".", "geometry"
-))
 
-join_mpa_data <- function(x) {
-  utils::data("all_mpas", envir = environment())
+join_mpa_data <- function(x, all_mpas) {
 
   x_sf <- sf::st_as_sf(x, coords = c("longitude", "latitude"), crs = 4326, remove = F)
 
@@ -56,14 +53,14 @@ join_mpa_data <- function(x) {
 
   res <- res %>%
     dplyr::rename(
-      zone = NOMBRE,
-      mpa_decree = CAT_DECRET,
-      state = ESTADOS,
-      municipality = MUNICIPIOS,
-      region = REGION
+      zone = .data$NOMBRE,
+      mpa_decree = .data$CAT_DECRET,
+      state = .data$ESTADOS,
+      municipality = .data$MUNICIPIOS,
+      region = .data$REGION
     ) %>%
-    dplyr::mutate(zone = tidyr::replace_na(zone, "open area")) %>%
-    as.data.frame(.) %>%
-    dplyr::select(-geometry)
+    dplyr::mutate(zone = tidyr::replace_na(.data$zone, "open area")) %>%
+    as.data.frame() %>%
+    dplyr::select(-.data$geometry)
   res
 }

@@ -15,6 +15,9 @@
 #' @return A data.frame
 #' @export
 #'
+#' @importFrom dplyr %>%
+#' @importFrom rlang .data
+#'
 #' @examples
 #'
 #' # Using a path to a downloaded raw file
@@ -27,7 +30,6 @@
 #' cleaned_vms <- vms_clean(sample_dataset)
 #' head(cleaned_vms)
 
-utils::globalVariables(c("any_of", "latitude", "longitude", "direction", "speed"))
 
 vms_clean <- function(path_to_data) {
 
@@ -56,17 +58,17 @@ vms_clean <- function(path_to_data) {
         dplyr::mutate(year = lubridate::year(date)) %>%
         dplyr::mutate(month = lubridate::month(date)) %>%
         dplyr::mutate(day = lubridate::day(date)) %>%
-        tibble::rowid_to_column(., "id") %>%
-        dplyr::relocate(any_of(c("id", "year", "month", "day", "date"))) %>%
-        dplyr::filter(!is.na(latitude)) %>%
-        dplyr::filter(!is.na(longitude)) %>%
-        dplyr::mutate(direction = as.numeric(direction)) %>%
-        dplyr::mutate(speed = as.numeric(speed)) %>%
+        dplyr::mutate(id = dplyr::row_number()) %>%
+        dplyr::relocate(tidyselect::any_of(c("id", "year", "month", "day", "date"))) %>%
+        dplyr::filter(!is.na(.data$latitude)) %>%
+        dplyr::filter(!is.na(.data$longitude)) %>%
+        dplyr::mutate(direction = as.numeric(.data$direction)) %>%
+        dplyr::mutate(speed = as.numeric(.data$speed)) %>%
         dplyr::mutate(file_name = stringr::str_remove(path_to_data, "data/VMS-data/raw//"))
 
       empty_coordinates <- x %>%
-        dplyr::filter(is.na(latitude)) %>%
-        dplyr::filter(is.na(longitude))
+        dplyr::filter(is.na(.data$latitude)) %>%
+        dplyr::filter(is.na(.data$longitude))
       cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data!"))
       res
     } else if (is.data.frame(path_to_data) == TRUE) {
@@ -89,24 +91,24 @@ vms_clean <- function(path_to_data) {
         dplyr::mutate(year = lubridate::year(date)) %>%
         dplyr::mutate(month = lubridate::month(date)) %>%
         dplyr::mutate(day = lubridate::day(date)) %>%
-        tibble::rowid_to_column(., "id") %>%
-        dplyr::relocate(any_of(c("id", "year", "month", "day", "date"))) %>%
+        dplyr::mutate(id = dplyr::row_number()) %>%
+        dplyr::relocate(tidyselect::any_of(c("id", "year", "month", "day", "date"))) %>%
         dplyr::mutate(
-          latitude = as.numeric(latitude),
-          longitude = as.numeric(longitude)
+          latitude = as.numeric(.data$latitude),
+          longitude = as.numeric(.data$longitude)
         ) %>%
-        dplyr::filter(!is.na(latitude)) %>%
-        dplyr::filter(!is.na(longitude)) %>%
-        dplyr::mutate(direction = as.numeric(direction)) %>%
-        dplyr::mutate(speed = as.numeric(speed))
+        dplyr::filter(!is.na(.data$latitude)) %>%
+        dplyr::filter(!is.na(.data$longitude)) %>%
+        dplyr::mutate(direction = as.numeric(.data$direction)) %>%
+        dplyr::mutate(speed = as.numeric(.data$speed))
 
       empty_coordinates <- x %>%
         dplyr::mutate(
-          latitude = as.numeric(latitude),
-          longitude = as.numeric(longitude)
+          latitude = as.numeric(.data$latitude),
+          longitude = as.numeric(.data$longitude)
         ) %>%
-        dplyr::filter(is.na(latitude)) %>%
-        dplyr::filter(is.na(longitude))
+        dplyr::filter(is.na(.data$latitude)) %>%
+        dplyr::filter(is.na(.data$longitude))
       cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
       res
     } else {

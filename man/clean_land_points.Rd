@@ -4,12 +4,12 @@
 \alias{clean_land_points}
 \title{Clean points falling inland}
 \usage{
-clean_land_points(x)
+clean_land_points(x, mx_inland)
 }
 \arguments{
 \item{x}{A data.frame containing latitude and longitude coordinates of vessels tracks to be cleaned by land area}
 
-\item{mx_inland}{is a shapefile loaded with the packages representing inland Mexico area}
+\item{mx_inland}{is a shapefile loaded with the packages representing inland Mexico area, it can be uploaded with \verb{data("mx_inland)}}
 }
 \value{
 A data.frame object
@@ -36,18 +36,17 @@ x <- data.frame(
   longitude = runif(1000, min = -150, max = -80),
   latitude = runif(1000, min = 15, max = 35)
 )
-
-x <- clean_land_points(x)
+data("mx_inland")
+x <- clean_land_points(x, mx_inland)
 
 # using sample_dataset
 
-data("sample_dataset")
+data("sample_dataset", "mx_inland")
+
 vms_cleaned <- vms_clean(sample_dataset)
-vms_cleaned <- dplyr::sample_n(vms_cleaned, 10000)
-vms_no_land <- clean_land_points(vms_cleaned)
+vms_no_land <- clean_land_points(vms_cleaned, mx_inland)
 
 # You can check the results by plotting the data
-# ONLY do this on subsamples as it will take a long time to plot all points
 
 vms_cleaned_sf <- sf::st_as_sf(vms_cleaned, coords = c("longitude", "latitude"), crs = 4326)
 
