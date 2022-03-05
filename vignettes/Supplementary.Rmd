@@ -83,7 +83,7 @@ library(fst) # this allows to load fst type of files
 
 # Creating a list of file names from downloaded data (change the path if needed)
 file_names <- list.files(
-                        "VMS-data/raw/",
+                        "VMS-data/",
                         pattern = ".csv",
                         full.names = T,
                         recursive = T

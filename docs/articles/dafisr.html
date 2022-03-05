@@ -49,7 +49,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/dafisr.html">Where to start</a>
-    <a class="dropdown-item" href="../articles/Supplementary.html">Supplementary Information of Large Marine Protected Areas implementation has minimal impacts on catches or dispalcement of fishing industry footprint</a>
+    <a class="dropdown-item" href="../articles/Supplementary.html">Supplementary Information of:</a>
   </div>
 </li>
       </ul>
@@ -149,7 +149,7 @@ within these buffers will be labelled as <code>at_port</code> or
 <span class="va">with_ports</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/join_ports_locations.html">join_ports_locations</a></span><span class="op">(</span><span class="va">vms_subset</span><span class="op">)</span></code></pre></div>
 <p>Now we can check the results in a map:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">with_ports_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">with_ports</span>,
+<code class="sourceCode R"><span class="va">with_ports_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">with_ports</span>,
                          coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>,
                          crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
 
