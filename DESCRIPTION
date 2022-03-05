@@ -4,7 +4,6 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Fabio", "Favoretto", , "fabio@gocmarineprogram.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6493-4254"))
-    person("Eduardo", "Leon Solorzano", , "leonsol.eduardo@gmail.com", role = c("aut", "cre"))
 Description: The package allows to download, clean and analyse raw VMS data from Mexican government.
    First you can use the vms_download function to download raw data, or you can use the sample_dataset provided
    within the package. You can follow the tutorial in the vignette available at https://cbmc-gcmp.github.io/dafishr/index.html 

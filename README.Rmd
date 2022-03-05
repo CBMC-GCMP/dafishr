@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# dafishr <a href='https://cbmc-gcmp.github.io/dafishr'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# dafishr <a href='https://cbmc-gcmp.github.io/dafishr'><img src="man/figures/logo.png" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -29,14 +29,14 @@ You can follow the instruction below using a sample dataset that comes along wit
 
 ## Installation
 
-You can find the source code of the package in our [GitHub](https://github.com/https://github.com/CBMC-GCMP/dafishr) repository or you can install with:
+You can install `dafishr` with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("CBMC-GCMP/dafishr")
 ```
 
-If you haven't `devtools` package previously installed just delete the comment # from the code above and run both lines. 
+If you haven't `devtools` package previously installed just delete the comment \# from the code above and run both lines.
 
 ## Where to start
 

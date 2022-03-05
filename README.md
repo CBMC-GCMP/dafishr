@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# dafishr <a href='https://cbmc-gcmp.github.io/dafishr'><img src='man/figures/logo.png' align="right" height="139" /></a>
+# dafishr <a href='https://cbmc-gcmp.github.io/dafishr'><img src="man/figures/logo.png" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -33,9 +33,7 @@ for details on its usage.
 
 ## Installation
 
-You can find the source code of the package in our
-[GitHub](https://github.com/https://github.com/CBMC-GCMP/dafishr)
-repository or you can install with:
+You can install `dafishr` with:
 
 ``` r
 # install.packages("devtools")
