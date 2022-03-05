@@ -66,7 +66,7 @@ vms_clean <- function(path_to_data) {
       empty_coordinates <- x %>%
         dplyr::filter(is.na(.data$latitude)) %>%
         dplyr::filter(is.na(.data$longitude))
-      cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data!"))
+      cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
       res
     } else if (is.data.frame(path_to_data) == TRUE) {
       x <- path_to_data
@@ -109,7 +109,7 @@ vms_clean <- function(path_to_data) {
       cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
       res
     } else {
-      cat("Data must be a path to folder or data.frame object")
+      cat("Data must be a path to folder or data.frame object \n")
     }
   )
 }
