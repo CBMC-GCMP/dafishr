@@ -55,13 +55,13 @@ preprocessing_vms <- function(path) {
 
   # Intersect with landmass to filter nonsensical coordinates
 
-  vms <- clean_land_points(vms)
+  vms <- clean_land_points(vms, mx_inland)
 
   # Intersect with ports buffer and create a column "port_visit" at port or at sea
-  vms <- join_ports_locations(vms)
+  vms <- join_ports_locations(vms, mx_ports)
 
   # Intersect with MX MPAs and create a column with MPA name or OA
-  vms <- join_mpa_data(vms)
+  vms <- join_mpa_data(vms, all_mpas)
 
 
   dir.create("preprocessed/")
