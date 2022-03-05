@@ -34,10 +34,8 @@
 #'   geom_sf(data = with_ports_sf, aes(col = location)) +
 #'   facet_wrap(~location) +
 #'   theme_bw()
-
-
 join_ports_locations <-
-  function(x, mx_ports, buffer_size = 0.15) {
+  function(x, mx_ports = mx_ports, buffer_size = 0.15) {
     if (!"id" %in% colnames(x)) {
       cat("creating ids...")
       x <- x %>% dplyr::mutate(id = dplyr::row_number())

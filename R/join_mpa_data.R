@@ -42,11 +42,7 @@
 #'   geom_sf(data = vms_mpas_sf, aes(col = zone)) +
 #'   theme_void() +
 #'   theme(legend.position = "")
-
-
-
-join_mpa_data <- function(x, all_mpas) {
-
+join_mpa_data <- function(x, all_mpas = all_mpas) {
   x_sf <- sf::st_as_sf(x, coords = c("longitude", "latitude"), crs = 4326, remove = F)
 
   res <- sf::st_join(x_sf, all_mpas, left = T)

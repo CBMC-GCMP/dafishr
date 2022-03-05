@@ -4,7 +4,7 @@
 \alias{join_ports_locations}
 \title{Label points when vessel is at port}
 \usage{
-join_ports_locations(x, mx_ports, buffer_size = 0.15)
+join_ports_locations(x, mx_ports = mx_ports, buffer_size = 0.15)
 }
 \arguments{
 \item{x}{a data.frame with latitude and longitude coordinates}

@@ -49,9 +49,7 @@
 #'
 #' # in the provided example only few inland points are eliminated.
 #' # There are more evident one within historical data.
-
-
-clean_land_points <- function(x, mx_inland) {
+clean_land_points <- function(x, mx_inland = mx_inland) {
   sf::sf_use_s2(FALSE)
 
   land_area <- sf::st_make_valid(sf::st_transform(mx_inland, crs = 4326))

@@ -29,10 +29,7 @@
 #' data("sample_dataset")
 #' cleaned_vms <- vms_clean(sample_dataset)
 #' head(cleaned_vms)
-
-
 vms_clean <- function(path_to_data) {
-
   suppressWarnings(
     if (is.character(path_to_data) == TRUE) {
       x <- readr::read_csv(path_to_data,

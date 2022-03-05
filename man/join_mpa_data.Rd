@@ -4,7 +4,7 @@
 \alias{join_mpa_data}
 \title{Detect fishing vessel presence within MPA polygons in Mexico}
 \usage{
-join_mpa_data(x, all_mpas)
+join_mpa_data(x, all_mpas = all_mpas)
 }
 \arguments{
 \item{x}{A data.frame with VMS data that must contain columns longitude and latitude}

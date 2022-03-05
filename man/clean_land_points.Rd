@@ -4,7 +4,7 @@
 \alias{clean_land_points}
 \title{Clean points falling inland}
 \usage{
-clean_land_points(x, mx_inland)
+clean_land_points(x, mx_inland = mx_inland)
 }
 \arguments{
 \item{x}{A data.frame containing latitude and longitude coordinates of vessels tracks to be cleaned by land area}

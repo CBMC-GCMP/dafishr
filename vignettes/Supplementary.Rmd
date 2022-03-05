@@ -1,5 +1,6 @@
 ---
-title: "Supplementary Information of Large Marine Protected Areas implementation has minimal impacts on catches or dispalcement of fishing industry footprint"
+title: "Supplementary Information of:"
+subtitle: "Large Marine Protected Areas implementation has minimal impacts on catches or dispalcement of fishing industry footprint"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{LMPAs has no effects on fishing industry}
@@ -14,9 +15,102 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 ## Context
 
 Implementing fully protected Large Marine Protected Areas (LMPAs) is important to preserve food, curb overfishing, and halt biodiversity loss. International commitments in the form of area-based targets have given much popularity to LMPAs but also drew criticism from a fishery perspective. In our study, we analyzed the fishing activity of Mexican industrial vessels and found that current fishing activity within LMPA is minimal. The industrial fishing footprint was not affected by establishing an LMPA, which successfully reduced the fishing pressure within its polygon. No decrease in catches or fishing effort displacement could be observed after MPA implementation. This study proves the usefulness of open VMS data in MPA assessment, monitoring, and fishery management. Fully protecting existing remote areas would be a first step towards fulfilling the ambitious 30x30 conservation target, which will require the establishment of LMPAs strategically placed within a conservation network that can efficiently curb human impacts.
 
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+DiagrammeR::grViz("digraph flowchart {
+      # node definitions with substituted label text
+      node [fontname = Helvetica, shape = rectangle]        
+      tab1 [label = '@@1']
+      tab2 [label = '@@2']
+      tab3 [label = '@@3']
+      tab4 [label = '@@4']
+      tab5 [label = '@@5']
+      tab6 [label = '@@6']
 
+      # edge definitions with the node IDs
+      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;
+      }
+
+      [1]: 'Download raw data with vms_download()'
+      [2]: 'Preprocessing VMS data'
+      [3]: 'Summarise statistics within EEZ, MPAs, High Seas, and buffers'
+      [4]: 'Causal Impact modeling'
+      [5]: 'Normalized Difference Index on rasters'
+      [6]: 'Change in catches over the years'
+      ")
+```
+
+## Raw data download
+
+The first step is downloading raw VMS data using the `vms_download()` function. This connects to the [Datos Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/resource/309e872a-dbca-4962-b14f-f0da833abebe) webpages and download the original data. Data comes as several `.csv` files within sub-folder order by month. Often `.csv` data are split by-weekly. You can download all of the years available by running:
+
+```{r eval=FALSE}
+library(dafishr)
+
+vms_download(2008:2021)
+```
+
+Speed of download depends on your internet connection and might take a while. All data are stored within your working directory under the `VMS-data` folder by default.
+
+## Preprocessing VMS data
+
+Raw VMS data need to be preprocessed in order to have tidy datasets. The processing consist several steps:
+
+-   ***Data wrangling***: standardizing column names, formatting dates, and filtering out mistake within raw data. Sometimes for example data are misplaced or can have `NULL` entries. These need to be eliminated.
+
+-   ***Spatial corrections***: it eliminates all coordinates that fall inland because of ping errors or data entry errors.
+
+-   ***Spatial joining***: it spatially joins all the VMS points with port areas and with MPA polygons.
+
+Since the raw VMS data folder contains several `.csv` files that are quite big if joined together, the processing would quickly saturate RAM memory of any personal computer. Therefore, a piece meal strategy is adopted by maintaining each file separated and working on in independently for the preprocessing phase. This also allows to include a parallel processing approach by looping each of the raw file and creating the outputs separately inside a standard `preprocessed` folder. Outputs files will be in `.fst` format which is awesome to handle large datasets (see `fst` [package](https://www.fstpackage.org/) documentation for further information).
+
+### ❗DISCLAIMER ❗
+
+#### Note on setting CPU cores
+
+To speed up the process, we use parallel processing. If you don't know what that is, you might want to stop and contact us before continuing. We will make use of the `future.lapply` package that allow things to run in parallel processing using the cores in your CPU. You can set how many CPU you want to use In the `plan()` function. While you can go full throttle on this, we strongly advise you don't, as data will saturate your RAM. I personally tested these functions on a XPS dell with an Intel(R) Core(TM) i9/9980HK CPU at 2.40 GHz with 8 cores and 32 GB of RAM, and if I go full throttle it fails because of RAM. Unless you are running this on a server, I am pretty sure that it will fail on your PC too. If you have any question, comments, or advice these are welcome and please, contact me! In short, it make sense to use 2 to 4 cores, it will take more time but it won't fail or burn your RAM. We take ***NO*** responsibility whatsoever in any damages to personal belongings that might come from running this recklessly, so please don't try this at home if you don't know what you are doing.
+
+*If you feel safer NOT using parallel processing you can do that! We provide an example right after this one.*
+
+It is time to put all this to the test! First we will load the `future.lapply` package for parallel processing, which parallelize `lapply` like functions in `R`. Then we'll create the list of raw files within the downloaded folder and apply the function `preprocessing_vms()`. Once you run it, go grab a coffee ☕, maybe even two☕☕, or actually don't, maybe take a quick nap 🛌... as it will take ***a while*** if run on the full data. If you just want to test it out, you can use the function only on one year by specifying the folder containing only one year worth of data (or less, if you want).
+
+```{r eval=FALSE}
+library(future.apply) # this library is need for parallel processing
+library(fst) # this allows to load fst type of files
+
+# Creating a list of file names from downloaded data (change the path if needed)
+file_names <- list.files(
+                        "VMS-data/raw/",
+                        pattern = ".csv",
+                        full.names = T,
+                        recursive = T
+            )
+
+# this plans a parallel session, set workers carefully according to your CPU capabilities
+# here I conservatively set it to 2 cores.
+plan(multisession, workers = 2)
+
+# This runs the function in parallel and times it
+system.time(future_lapply(file_names, preprocessing_vms))
+```
+
+If you chose NOT to run in parallel you can do the following. In this case, definitely go take a nap, because it will take much more time. You can set a sound alert using the `beepr` package to wake you up when it's done if you want 😃.
+
+```{r eval=FALSE}
+library(fst) # this allows to load fst type of files
+
+# Creating a list of file names from downloaded data (change the path if needed)
+file_names <- list.files(
+                        "VMS-data/raw/",
+                        pattern = ".csv",
+                        full.names = T,
+                        recursive = T
+            )
+
+
+system.time(lapply(file_names, preprocessing_vms))
+
+```
