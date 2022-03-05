@@ -39,7 +39,7 @@
 #' library(fst) # this allows to load fst type of files
 #'
 #' # Creating a list of file names from downloaded data (change the path if needed)
-#' file_names <- list.files("VMS-data/raw/", pattern = ".csv", full.names = T, recursive = T)
+#' file_names <- list.files("VMS-data/", pattern = ".csv", full.names = T, recursive = T)
 #'
 #'
 #' # this plans a parallel session, set workers carefully according to your CPU capabilities
