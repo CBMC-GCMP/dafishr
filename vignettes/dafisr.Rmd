@@ -40,7 +40,6 @@ The first vms_clean() function works on the VMS data.frame. You can either load
 downloaded data or use the sample_dataset that you can call and clean like so:
 
 ```{r eval=FALSE}
-
 library(dafishr)
 data("sample_dataset")
 vms_cleaned <- vms_clean(sample_dataset)
@@ -55,7 +54,6 @@ cleaned because they contained `NULL` values in coordinates.
 Once the dataset is wrangled, there are some other preprocessing steps to follow. First, all points that fall inland should be eliminated. This is because VMS data are vessels, thus points falling inland are errors in data registration. For that we will upload the `mx_inland` shapefile which helps eliminating all the points within a cerain distance from the coastline. 
 
 ```{r eval=FALSE}
-
 data("mx_inland") # Shapefile of inland Mexico area
 vms_cleaned_land <- clean_land_points(vms_cleaned, mx_inland)
 
@@ -67,8 +65,6 @@ vms_cleaned_land <- clean_land_points(vms_cleaned, mx_inland)
 Once all land points are eliminated, we can use the `join_ports_locations()` function to label all the points where a vessel was inside a port or a marina. We achieve this by using the `mx_ports` shapefile that will be used to create a buffer around each port or marina location. Then each VMS point that falls within these buffers will be labelled as `at_port` or `at_sea` in a new column that will be automatically called `location`. 
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE}
-
-
 data("mx_ports")
 
 # If you are just testing, it is a good idea to subsample... it takes a while on the full data!
@@ -81,7 +77,6 @@ with_ports <- join_ports_locations(vms_subset)
 Now we can check the results in a map: 
 
 ```{r eval=FALSE}
-
 with_ports_sf <- sf::st_as_sf(with_ports,
                          coords = c("longitude", "latitude"),
                          crs = 4326)

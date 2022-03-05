@@ -33,13 +33,17 @@ for details on its usage.
 
 ## Installation
 
-You can install the development version of dafishr from our
-[GitHub](https://github.com/) with:
+You can find the source code of the package in our
+[GitHub](https://github.com/https://github.com/CBMC-GCMP/dafishr)
+repository or you can install with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("CBMC-GCMP/dafishr")
 ```
+
+If you haven’t `devtools` package previously installed just delete the
+comment \# from the code above and run both lines.
 
 ## Where to start
 

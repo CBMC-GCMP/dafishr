@@ -1,0 +1,22 @@
+---
+title: "Supplementary Information of Large Marine Protected Areas implementation has minimal impacts on catches or dispalcement of fishing industry footprint"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{LMPAs has no effects on fishing industry}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+## Context
+
+Implementing fully protected Large Marine Protected Areas (LMPAs) is important to preserve food, curb overfishing, and halt biodiversity loss. International commitments in the form of area-based targets have given much popularity to LMPAs but also drew criticism from a fishery perspective. In our study, we analyzed the fishing activity of Mexican industrial vessels and found that current fishing activity within LMPA is minimal. The industrial fishing footprint was not affected by establishing an LMPA, which successfully reduced the fishing pressure within its polygon. No decrease in catches or fishing effort displacement could be observed after MPA implementation. This study proves the usefulness of open VMS data in MPA assessment, monitoring, and fishery management. Fully protecting existing remote areas would be a first step towards fulfilling the ambitious 30x30 conservation target, which will require the establishment of LMPAs strategically placed within a conservation network that can efficiently curb human impacts.
+
+

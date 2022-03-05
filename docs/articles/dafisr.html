@@ -49,6 +49,7 @@
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/dafisr.html">Where to start</a>
+    <a class="dropdown-item" href="../articles/Supplementary.html">Supplementary Information of Large Marine Protected Areas implementation has minimal impacts on catches or dispalcement of fishing industry footprint</a>
   </div>
 </li>
       </ul>
@@ -109,8 +110,7 @@ will be very pleased if you create an issue.</p>
 either load downloaded data or use the sample_dataset that you can call
 and clean like so:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/CBMC-GCMP/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/CBMC-GCMP/dafishr" class="external-link">dafishr</a></span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sample_dataset"</span><span class="op">)</span>
 <span class="va">vms_cleaned</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vms_clean.html">vms_clean</a></span><span class="op">(</span><span class="va">sample_dataset</span><span class="op">)</span></code></pre></div>
 <p>The vms_clean() function returns a message with the number of rows
@@ -127,8 +127,7 @@ inland are errors in data registration. For that we will upload the
 <code>mx_inland</code> shapefile which helps eliminating all the points
 within a cerain distance from the coastline.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_inland"</span><span class="op">)</span> <span class="co"># Shapefile of inland Mexico area</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_inland"</span><span class="op">)</span> <span class="co"># Shapefile of inland Mexico area</span>
 <span class="va">vms_cleaned_land</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_land_points.html">clean_land_points</a></span><span class="op">(</span><span class="va">vms_cleaned</span>, <span class="va">mx_inland</span><span class="op">)</span></code></pre></div>
 <div class="section level3">
 <h3 id="associating-port-data">Associating port data<a class="anchor" aria-label="anchor" href="#associating-port-data"></a>
@@ -142,9 +141,7 @@ within these buffers will be labelled as <code>at_port</code> or
 <code>at_sea</code> in a new column that will be automatically called
 <code>location</code>.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_ports"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_ports"</span><span class="op">)</span>
 
 <span class="co"># If you are just testing, it is a good idea to subsample... it takes a while on the full data!</span>
 
@@ -152,19 +149,18 @@ within these buffers will be labelled as <code>at_port</code> or
 <span class="va">with_ports</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/join_ports_locations.html">join_ports_locations</a></span><span class="op">(</span><span class="va">vms_subset</span><span class="op">)</span></code></pre></div>
 <p>Now we can check the results in a map:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="va">with_ports_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">with_ports</span>,
+<code class="sourceCode R"><span class="va">with_ports_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/sf/man/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">with_ports</span>,
                          coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>,
                          crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"mx_shape"</span><span class="op">)</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mx_shape</span><span class="op">)</span> <span class="op">+</span>
-            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"gray90"</span><span class="op">)</span> <span class="op">+</span>
-            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">with_ports_sf</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">location</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">location</span><span class="op">)</span> <span class="op">+</span>
-            <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">mx_shape</span><span class="op">)</span> <span class="op">+</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>col <span class="op">=</span> <span class="st">"gray90"</span><span class="op">)</span> <span class="op">+</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">with_ports_sf</span>, <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/aes.html" class="external-link">aes</a></span><span class="op">(</span>col <span class="op">=</span> <span class="va">location</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span> <span class="op">~</span> <span class="va">location</span><span class="op">)</span> <span class="op">+</span>
+            <span class="fu"><a href="https://rdrr.io/pkg/ggplot2/man/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
@@ -175,7 +171,7 @@ within these buffers will be labelled as <code>at_port</code> or
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by Fabio Favoretto.</p>
+<p>Developed by Eduardo Leon Solorzano.</p>
 </div>
 
 <div class="pkgdown-footer-right">
