@@ -66,6 +66,6 @@ preprocessing_vms <- function(path) {
 
   dir.create("preprocessed/")
 
-  fst::write_fst(vms, paste0("preprocessed/vms_", unique(vms$year), "_", unique(vms$year), "_preprocessed.fst"))
-  cat(paste0("Writing file: vms_", unique(vms$year), "_", unique(vms$year), "_preprocessed.fst \n"))
+  fst::write_fst(vms, paste0("preprocessed/vms_", unique(vms$year), "_", unique(vms$month), "_", min(vms$day), "_", max(vms$day), "_preprocessed.fst"))
+  cat(paste0("Writing file: vms_", unique(vms$year), "_", unique(vms$month), "_", min(vms$day), "_", max(vms$day), "_preprocessed.fst"))
 }
