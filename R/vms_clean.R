@@ -61,6 +61,7 @@ vms_clean <- function(path_to_data) {
         dplyr::filter(!is.na(.data$longitude)) %>%
         dplyr::mutate(direction = as.numeric(.data$direction)) %>%
         dplyr::mutate(speed = as.numeric(.data$speed)) %>%
+        dplyr::filter(!is.na(.data$speed)) %>%
         dplyr::mutate(file_name = stringr::str_remove(path_to_data, "data/VMS-data/raw//"))
 
       empty_coordinates <- x %>%
