@@ -23,3 +23,36 @@ underwent the preprocessing. If multiple files are used as input (see examples b
 multiple files. All the outputs are in \code{.fst} format, which allows fast upload of large files.
 See \code{fst} package documentation for further information https://www.fstpackage.org/.
 }
+\examples{
+
+# An example with the `sample.dataset`
+\dontrun{
+preprocessing_vms(sample_dataset)
+}
+
+# An example on downloaded data
+\dontrun{
+vms_download(2019) # downloads raw data from 2019 with standard subfolders
+
+preprocessing_vms("VMS-data/RLMSEP_2019/1.-ENERO/01-31 ENE 2008.csv")
+}
+
+# An example running everything in parallel on multiple files
+\dontrun{
+
+library(future.apply) # this library is need for parallel processing
+library(fst) # this allows to load fst type of files
+
+# Creating a list of file names from downloaded data (change the path if needed)
+file_names <- list.files("VMS-data/", pattern = ".csv", full.names = T, recursive = T)
+
+
+# this plans a parallel session, set workers carefully according to your CPU capabilities
+plan(multisession, workers = 2)
+
+# This runs the function in parallel
+system.time(
+  future_lapply(file_names, preprocessing_vms)
+)
+}
+}
