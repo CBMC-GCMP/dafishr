@@ -114,3 +114,7 @@ file_names <- list.files(
 system.time(lapply(file_names, preprocessing_vms))
 
 ```
+
+## VMS modeling with Gaussian Mixed Models
+
+In this section we will model the preprocessed VMS data with Gaussian Mixed Models.
