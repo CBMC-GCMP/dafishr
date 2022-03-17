@@ -90,8 +90,8 @@
 <h2 id="context">Context<a class="anchor" aria-label="anchor" href="#context"></a>
 </h2>
 <p>Implementing fully protected Large Marine Protected Areas (LMPAs) is important to preserve food, curb overfishing, and halt biodiversity loss. International commitments in the form of area-based targets have given much popularity to LMPAs but also drew criticism from a fishery perspective. In our study, we analyzed the fishing activity of Mexican industrial vessels and found that current fishing activity within LMPA is minimal. The industrial fishing footprint was not affected by establishing an LMPA, which successfully reduced the fishing pressure within its polygon. No decrease in catches or fishing effort displacement could be observed after MPA implementation. This study proves the usefulness of open VMS data in MPA assessment, monitoring, and fishery management. Fully protecting existing remote areas would be a first step towards fulfilling the ambitious 30x30 conservation target, which will require the establishment of LMPAs strategically placed within a conservation network that can efficiently curb human impacts.</p>
-<div id="htmlwidget-befdeac461d61722a9a3" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-befdeac461d61722a9a3">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Download raw data with vms_download()\"]\n      tab2 [label = \"Preprocessing VMS data\"]\n      tab3 [label = \"Summarise statistics within EEZ, MPAs, High Seas, and buffers\"]\n      tab4 [label = \"Causal Impact modeling\"]\n      tab5 [label = \"Normalized Difference Index on rasters\"]\n      tab6 [label = \"Change in catches over the years\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-912d84c7f01defe35dc9" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-912d84c7f01defe35dc9">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Download raw data with vms_download()\"]\n      tab2 [label = \"Preprocessing VMS data\"]\n      tab3 [label = \"Summarise statistics within EEZ, MPAs, High Seas, and buffers\"]\n      tab4 [label = \"Causal Impact modeling\"]\n      tab5 [label = \"Normalized Difference Index on rasters\"]\n      tab6 [label = \"Change in catches over the years\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="section level2">
 <h2 id="raw-data-download">Raw data download<a class="anchor" aria-label="anchor" href="#raw-data-download"></a>
@@ -156,6 +156,11 @@
 <span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">file_names</span>, <span class="va">preprocessing_vms</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
 </div>
+</div>
+<div class="section level2">
+<h2 id="vms-modeling-with-gaussian-mixed-models">VMS modeling with Gaussian Mixed Models<a class="anchor" aria-label="anchor" href="#vms-modeling-with-gaussian-mixed-models"></a>
+</h2>
+<p>In this section we will model the preprocessed VMS data with Gaussian Mixed Models.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
