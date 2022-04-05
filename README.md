@@ -69,7 +69,7 @@ The workflow provided here is a work in progress and there are probably
 some errors we haven’t spotted or considered up to now. If you feel you
 can contribute to this effort feel free to do so by creating a pull
 request. If you are an undergrad and you which to help or develop
-scientific projects using this data you are welcome to contact us
-through, you can find contact information of the main author
+scientific projects using this data you are welcome to contact us.
+Please, find contact information of the main author
 [here](https://github.com/Fabbiologia), or via
 [twitter](https://twitter.com/FabioFavoretto).
