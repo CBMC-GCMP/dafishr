@@ -50,7 +50,8 @@ The first step is downloading raw VMS data using the `vms_download()` function. 
 ```{r eval=FALSE}
 library(dafishr)
 
-vms_download(2008:2021)
+year <- c(2008:2021)
+lapply(year, vms_download)
 ```
 
 Speed of download depends on your internet connection and might take a while. All data are stored within your working directory under the `VMS-data` folder by default.

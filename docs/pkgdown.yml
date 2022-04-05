@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   dafisr: dafisr.html
   Supplementary: Supplementary.html
-last_built: 2022-03-05T03:48Z
+last_built: 2022-04-05T20:41Z
 urls:
   reference: https://cbmc-gcmp.github.io/dafishr/reference
   article: https://cbmc-gcmp.github.io/dafishr/articles
