@@ -90,8 +90,8 @@
 <h2 id="context">Context<a class="anchor" aria-label="anchor" href="#context"></a>
 </h2>
 <p>Implementing fully protected Large Marine Protected Areas (LMPAs) is important to preserve food, curb overfishing, and halt biodiversity loss. International commitments in the form of area-based targets have given much popularity to LMPAs but also drew criticism from a fishery perspective. In our study, we analyzed the fishing activity of Mexican industrial vessels and found that current fishing activity within LMPA is minimal. The industrial fishing footprint was not affected by establishing an LMPA, which successfully reduced the fishing pressure within its polygon. No decrease in catches or fishing effort displacement could be observed after MPA implementation. This study proves the usefulness of open VMS data in MPA assessment, monitoring, and fishery management. Fully protecting existing remote areas would be a first step towards fulfilling the ambitious 30x30 conservation target, which will require the establishment of LMPAs strategically placed within a conservation network that can efficiently curb human impacts.</p>
-<div id="htmlwidget-2445123ece8d8e3bfe9d" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
-<script type="application/json" data-for="htmlwidget-2445123ece8d8e3bfe9d">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Download raw data with vms_download()\"]\n      tab2 [label = \"Preprocessing VMS data\"]\n      tab3 [label = \"Summarise statistics within EEZ, MPAs, High Seas, and buffers\"]\n      tab4 [label = \"Causal Impact modeling\"]\n      tab5 [label = \"Normalized Difference Index on rasters\"]\n      tab6 [label = \"Change in catches over the years\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-c1d8bd4b9b1815a1ca27" style="width:700px;height:432.632880098888px;" class="grViz html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c1d8bd4b9b1815a1ca27">{"x":{"diagram":"digraph flowchart {\n      # node definitions with substituted label text\n      node [fontname = Helvetica, shape = rectangle]        \n      tab1 [label = \"Download raw data with vms_download()\"]\n      tab2 [label = \"Preprocessing VMS data\"]\n      tab3 [label = \"Summarise statistics within EEZ, MPAs, High Seas, and buffers\"]\n      tab4 [label = \"Causal Impact modeling\"]\n      tab5 [label = \"Normalized Difference Index on rasters\"]\n      tab6 [label = \"Change in catches over the years\"]\n\n      # edge definitions with the node IDs\n      tab1 -> tab2 -> tab3 -> tab4 -> tab5 -> tab6;\n      }","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div class="section level2">
 <h2 id="raw-data-download">Raw data download<a class="anchor" aria-label="anchor" href="#raw-data-download"></a>
@@ -162,6 +162,29 @@
 <h2 id="vms-modeling-with-gaussian-mixed-models">VMS modeling with Gaussian Mixed Models<a class="anchor" aria-label="anchor" href="#vms-modeling-with-gaussian-mixed-models"></a>
 </h2>
 <p>In this section we will model the preprocessed VMS data with Gaussian Mixed Models.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">file_names</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span>
+            <span class="st">"preprocessed/"</span>,
+            pattern <span class="op">=</span> <span class="st">".fst"</span>,
+            full.names <span class="op">=</span> <span class="cn">T</span>,
+            recursive <span class="op">=</span> <span class="cn">T</span>
+<span class="op">)</span>
+
+<span class="va">looping_model</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+            <span class="va">vms</span> <span class="op">&lt;-</span> <span class="fu"><a href="http://www.fstpackage.org/reference/write_fst.html" class="external-link">read_fst</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
+            <span class="va">vms_modelled</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/model_vms.html">model_vms</a></span><span class="op">(</span><span class="va">vms</span><span class="op">)</span>
+            
+            <span class="fu"><a href="https://rdrr.io/r/base/files2.html" class="external-link">dir.create</a></span><span class="op">(</span><span class="st">"outputs/"</span><span class="op">)</span>
+            <span class="fu"><a href="http://www.fstpackage.org/reference/write_fst.html" class="external-link">write_fst</a></span><span class="op">(</span><span class="va">vms_modelled</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"outputs/"</span>, <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">vms</span><span class="op">$</span><span class="va">year</span><span class="op">)</span>, <span class="st">"_"</span>, 
+                             <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">vms</span><span class="op">$</span><span class="va">month</span><span class="op">)</span>, <span class="st">"_"</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">vms</span><span class="op">$</span><span class="va">day</span><span class="op">)</span>, <span class="st">"_"</span>, 
+                             <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">vms</span><span class="op">$</span><span class="va">day</span><span class="op">)</span>, <span class="st">"_modeled.fst"</span><span class="op">)</span><span class="op">)</span>
+<span class="op">}</span>
+
+<span class="fu">plan</span><span class="op">(</span><span class="va">multisession</span>, workers <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+
+<span class="co"># This runs the function in parallel and times it</span>
+<span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span><span class="fu">future_lapply</span><span class="op">(</span><span class="va">file_names</span>, <span class="va">looping_model</span>, future.seed <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -176,7 +199,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
     </footer>
