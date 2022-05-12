@@ -119,3 +119,30 @@ system.time(lapply(file_names, preprocessing_vms))
 ## VMS modeling with Gaussian Mixed Models
 
 In this section we will model the preprocessed VMS data with Gaussian Mixed Models.
+
+```{r eval=FALSE}
+
+file_names <- list.files(
+            "preprocessed/",
+            pattern = ".fst",
+            full.names = T,
+            recursive = T
+)
+
+looping_model <- function(x) {
+            vms <- read_fst(x)
+            vms_modelled <- model_vms(vms)
+            
+            dir.create("outputs/")
+            write_fst(vms_modelled, paste0("outputs/", unique(vms$year), "_", 
+                             unique(vms$month), "_", min(vms$day), "_", 
+                             max(vms$day), "_modeled.fst"))
+}
+
+plan(multisession, workers = 2)
+
+# This runs the function in parallel and times it
+system.time(future_lapply(file_names, looping_model, future.seed = TRUE))
+
+
+```
