@@ -36,9 +36,7 @@ vms_clean <- function(path_to_data) {
         na = c("NA", "<NA>", "", " ", "?", "NULL"),
         col_types = vroom::cols(),
         locale = readr::locale(encoding = "latin1")
-      ) %>%
-                  dplyr::select(-.data$`...10`)
-
+      )
       names(x) <- c(
         "vessel_name",
         "RNP",
