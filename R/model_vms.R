@@ -21,7 +21,7 @@ model_vms <- function(df) {
     {
       EM_all <- mixtools::normalmixEM(at_sea$speed,
         mu = c(1, 4, 8),
-        sigma = c(2, 2, 2)
+        sigma = c(1, 1, 1)
       )
 
       speed_threshold_EM <- EM_all$mu[1] + 1.96 * EM_all$sigma[1]
