@@ -15,7 +15,6 @@
 #' @return A data.frame
 #' @export
 #'
-#' @importFrom dplyr %>%
 #' @importFrom rlang .data
 #'
 #' @examples
@@ -49,22 +48,22 @@ vms_clean <- function(path_to_data) {
         "direction"
       )
 
-      res <- x %>%
-        dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) %>%
-        dplyr::mutate(year = lubridate::year(date)) %>%
-        dplyr::mutate(month = lubridate::month(date)) %>%
-        dplyr::mutate(day = lubridate::day(date)) %>%
-        dplyr::mutate(id = dplyr::row_number()) %>%
-        dplyr::relocate(tidyselect::any_of(c("id", "year", "month", "day", "date"))) %>%
-        dplyr::filter(!is.na(.data$latitude)) %>%
-        dplyr::filter(!is.na(.data$longitude)) %>%
-        dplyr::mutate(direction = as.numeric(.data$direction)) %>%
-        dplyr::mutate(speed = as.numeric(.data$speed)) %>%
-        dplyr::filter(!is.na(.data$speed)) %>%
+      res <- x  |>
+        dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) |>
+        dplyr::mutate(year = lubridate::year(date)) |>
+        dplyr::mutate(month = lubridate::month(date)) |>
+        dplyr::mutate(day = lubridate::day(date)) |>
+        dplyr::mutate(id = dplyr::row_number()) |>
+        dplyr::relocate(tidyselect::any_of(c("id", "year", "month", "day", "date"))) |>
+        dplyr::filter(!is.na(.data$latitude)) |>
+        dplyr::filter(!is.na(.data$longitude)) |>
+        dplyr::mutate(direction = as.numeric(.data$direction)) |>
+        dplyr::mutate(speed = as.numeric(.data$speed)) |>
+        dplyr::filter(!is.na(.data$speed)) |>
         dplyr::mutate(file_name = stringr::str_remove(path_to_data, "data/VMS-data/raw//"))
 
-      empty_coordinates <- x %>%
-        dplyr::filter(is.na(.data$latitude)) %>%
+      empty_coordinates <- x |>
+        dplyr::filter(is.na(.data$latitude)) |>
         dplyr::filter(is.na(.data$longitude))
       cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
       res
@@ -83,28 +82,28 @@ vms_clean <- function(path_to_data) {
         "direction"
       )
 
-      res <- x %>%
-        dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) %>%
-        dplyr::mutate(year = lubridate::year(date)) %>%
-        dplyr::mutate(month = lubridate::month(date)) %>%
-        dplyr::mutate(day = lubridate::day(date)) %>%
-        dplyr::mutate(id = dplyr::row_number()) %>%
-        dplyr::relocate(tidyselect::any_of(c("id", "year", "month", "day", "date"))) %>%
+      res <- x |>
+        dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) |>
+        dplyr::mutate(year = lubridate::year(date)) |>
+        dplyr::mutate(month = lubridate::month(date)) |>
+        dplyr::mutate(day = lubridate::day(date)) |>
+        dplyr::mutate(id = dplyr::row_number()) |>
+        dplyr::relocate(tidyselect::any_of(c("id", "year", "month", "day", "date"))) |>
         dplyr::mutate(
           latitude = as.numeric(.data$latitude),
           longitude = as.numeric(.data$longitude)
-        ) %>%
-        dplyr::filter(!is.na(.data$latitude)) %>%
-        dplyr::filter(!is.na(.data$longitude)) %>%
-        dplyr::mutate(direction = as.numeric(.data$direction)) %>%
+        ) |>
+        dplyr::filter(!is.na(.data$latitude)) |>
+        dplyr::filter(!is.na(.data$longitude)) |>
+        dplyr::mutate(direction = as.numeric(.data$direction)) |>
         dplyr::mutate(speed = as.numeric(.data$speed))
 
-      empty_coordinates <- x %>%
+      empty_coordinates <- x |>
         dplyr::mutate(
           latitude = as.numeric(.data$latitude),
           longitude = as.numeric(.data$longitude)
-        ) %>%
-        dplyr::filter(is.na(.data$latitude)) %>%
+        ) |>
+        dplyr::filter(is.na(.data$latitude)) |>
         dplyr::filter(is.na(.data$longitude))
       cat(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
       res

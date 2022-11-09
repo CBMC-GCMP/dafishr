@@ -17,7 +17,6 @@
 #' @return A data.frame object
 #'
 #' @export
-#' @importFrom dplyr %>%
 #' @importFrom rlang .data
 #' @examples
 #'
@@ -56,8 +55,8 @@ clean_land_points <- function(x, mx_inland = mx_inland) {
 
   x <- sf::st_as_sf(as.data.frame(x), coords = c("longitude", "latitude"), crs = 4326, remove = F)
   x <- sf::st_difference(x, sf::st_union(land_area))
-  x <- x %>%
-    as.data.frame() %>%
+  x <- x |>
+    as.data.frame()  |>
     dplyr::select(-.data$geometry)
   x
 }

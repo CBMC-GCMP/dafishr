@@ -38,7 +38,7 @@ join_ports_locations <-
   function(x, mx_ports = mx_ports, buffer_size = 0.15) {
     if (!"id" %in% colnames(x)) {
       cat("creating ids...")
-      x <- x %>% dplyr::mutate(id = dplyr::row_number())
+      x <- x  |>  dplyr::mutate(id = dplyr::row_number())
     } else {
       NULL
     }
@@ -57,12 +57,12 @@ join_ports_locations <-
     )
 
     at_sea <- sf::st_difference(x_sf, sf::st_union(buffer))
-    at_sea <- at_sea %>%
-      dplyr::mutate(location = "at_sea") %>%
+    at_sea <- at_sea  |>
+      dplyr::mutate(location = "at_sea")  |>
       dplyr::select(.data$id, .data$location)
 
-    merge(x, at_sea, by = "id", all.x = T) %>%
-      as.data.frame() %>%
-      dplyr::mutate(location = tidyr::replace_na(.data$location, "port_visit")) %>%
+    merge(x, at_sea, by = "id", all.x = T)  |>
+      as.data.frame()  |>
+      dplyr::mutate(location = tidyr::replace_na(.data$location, "port_visit"))  |>
       dplyr::select(-.data$geometry)
   }
