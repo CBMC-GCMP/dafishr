@@ -13,8 +13,8 @@
 #' model_vms(df)
 #' }
 model_vms <- function(df) {
-  at_sea <- df %>%
-    dplyr::filter(.data$location == "at_sea") %>%
+  at_sea <- df |>
+    dplyr::filter(.data$location == "at_sea")  |>
     dplyr::select(.data$id, .data$speed)
 
   out <- return(tryCatch(
@@ -29,10 +29,10 @@ model_vms <- function(df) {
         "hauling", "not_hauling"
       )
       at_sea <- dplyr::select(at_sea, -.data$speed)
-      res <- merge(df, at_sea, by = "id", all.x = T) %>%
-        dplyr::mutate(vessel_state = ifelse(.data$location == "port_visit", "port_visit", .data$behaviour)) %>%
-        dplyr::mutate(vessel_state = ifelse(.data$vessel_state == "port_visit" & .data$speed > 0, "not_hauling", .data$vessel_state)) %>%
-        dplyr::mutate(model_type = "three_states") %>%
+      res <- merge(df, at_sea, by = "id", all.x = T)  |>
+        dplyr::mutate(vessel_state = ifelse(.data$location == "port_visit", "port_visit", .data$behaviour))  |>
+        dplyr::mutate(vessel_state = ifelse(.data$vessel_state == "port_visit" & .data$speed > 0, "not_hauling", .data$vessel_state)) |>
+        dplyr::mutate(model_type = "three_states")  |>
         dplyr::select(-.data$behaviour)
 
       return(res)
@@ -50,17 +50,17 @@ model_vms <- function(df) {
         "hauling", "not_hauling"
       )
       at_sea <- dplyr::select(at_sea, -.data$speed)
-      test <- merge(df, at_sea, by = "id", all.x = T) %>%
-        dplyr::mutate(vessel_state = ifelse(.data$location == "port_visit", "port_visit", .data$behaviour)) %>%
-        dplyr::mutate(vessel_state = ifelse(.data$vessel_state == "port_visit" & .data$speed > 0, "not_hauling", .data$vessel_state)) %>%
-        dplyr::mutate(model_type = "two_states") %>%
+      test <- merge(df, at_sea, by = "id", all.x = T) |>
+        dplyr::mutate(vessel_state = ifelse(.data$location == "port_visit", "port_visit", .data$behaviour))  |>
+        dplyr::mutate(vessel_state = ifelse(.data$vessel_state == "port_visit" & .data$speed > 0, "not_hauling", .data$vessel_state))  |>
+        dplyr::mutate(model_type = "two_states") |>
         dplyr::select(-.data$behaviour)
       return(test)
     },
     error = function(cond) {
       message(paste("Can't model vessel:", unique(df$vessel_name), "\n"))
-      x <- df %>%
-        dplyr::mutate(behaviour = "not_modelled", vessel_state = "not_modelled", model_type = "not_modelled") %>%
+      x <- df  |>
+        dplyr::mutate(behaviour = "not_modelled", vessel_state = "not_modelled", model_type = "not_modelled")  |>
         dplyr::mutate(vessel_state = ifelse(.data$vessel_state != "port_visit" & .data$speed < 5, "hauling", "not_hauling"))
       # Choose a return value in case of error
       return(x)

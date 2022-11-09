@@ -27,7 +27,7 @@
 #'
 #' # Plotting data
 #' # Points NOT inside MPA are removed to reduce data size
-#' vms_mpas_sub <- vms_mpas %>%
+#' vms_mpas_sub <- vms_mpas  |>
 #'   dplyr::filter(zone != "open area")
 #'
 #' vms_mpas_sf <- sf::st_as_sf(vms_mpas_sub, coords = c("longitude", "latitude"), crs = 4326)
@@ -47,16 +47,16 @@ join_mpa_data <- function(x, all_mpas = all_mpas) {
 
   res <- sf::st_join(x_sf, all_mpas, left = T)
 
-  res <- res %>%
+  res <- res |>
     dplyr::rename(
       zone = .data$NOMBRE,
       mpa_decree = .data$CAT_DECRET,
       state = .data$ESTADOS,
       municipality = .data$MUNICIPIOS,
       region = .data$REGION
-    ) %>%
-    dplyr::mutate(zone = tidyr::replace_na(.data$zone, "open area")) %>%
-    as.data.frame() %>%
+    ) |>
+    dplyr::mutate(zone = tidyr::replace_na(.data$zone, "open area"))  |>
+    as.data.frame()  |>
     dplyr::select(-.data$geometry)
   res
 }
