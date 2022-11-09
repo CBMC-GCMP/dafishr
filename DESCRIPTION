@@ -38,6 +38,7 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 URL: https://github.com/CBMC-GCMP/dafishr,
-    https://cbmc-gcmp.github.io/dafishr
+    https://cbmc-gcmp.github.io/dafishr,
+    https://cbmc-gcmp.github.io/dafishr/
 BugReports: https://github.com/CBMC-GCMP/dafishr
 VignetteBuilder: knitr
