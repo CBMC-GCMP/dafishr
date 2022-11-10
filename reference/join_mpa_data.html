@@ -101,7 +101,7 @@ and <code>region</code> contains the overall location of the MPA (in Spanish)</p
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Plotting data</span></span></span>
 <span class="r-in"><span><span class="co"># Points NOT inside MPA are removed to reduce data size</span></span></span>
-<span class="r-in"><span><span class="va">vms_mpas_sub</span> <span class="op">&lt;-</span> <span class="va">vms_mpas</span> <span class="op"><a href="pipe.html">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">vms_mpas_sub</span> <span class="op">&lt;-</span> <span class="va">vms_mpas</span>  <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">zone</span> <span class="op">!=</span> <span class="st">"open area"</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">vms_mpas_sf</span> <span class="op">&lt;-</span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_as_sf.html" class="external-link">st_as_sf</a></span><span class="op">(</span><span class="va">vms_mpas_sub</span>, coords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"longitude"</span>, <span class="st">"latitude"</span><span class="op">)</span>, crs <span class="op">=</span> <span class="fl">4326</span><span class="op">)</span></span></span>
