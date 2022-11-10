@@ -36,7 +36,7 @@ vms_mpas <- join_mpa_data(vms_cleaned, all_mpas)
 
 # Plotting data
 # Points NOT inside MPA are removed to reduce data size
-vms_mpas_sub <- vms_mpas \%>\%
+vms_mpas_sub <- vms_mpas  |>
   dplyr::filter(zone != "open area")
 
 vms_mpas_sf <- sf::st_as_sf(vms_mpas_sub, coords = c("longitude", "latitude"), crs = 4326)

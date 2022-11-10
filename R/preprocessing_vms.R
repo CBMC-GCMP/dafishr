@@ -17,6 +17,10 @@
 #' @return A `.fst` file saved within a `preprocessed` directory automatically created that stores
 #' each of the files that are used as input to the function.
 #' @export
+#' @import DiagrammeR
+#' @import ggplot2
+#' @import readxl
+#' @import tibble
 #'
 #' @examples
 #'
@@ -51,6 +55,9 @@
 #' )
 #' }
 preprocessing_vms <- function(path) {
+  mx_inland <- dafishr::mx_inland
+  mx_ports <- dafishr::mx_ports
+  all_mpas <- dafishr::all_mpas
   vms <- vms_clean(path)
 
   # Intersect with landmass to filter nonsensical coordinates
