@@ -84,7 +84,7 @@ with_ports_sf <- sf::st_as_sf(with_ports,
 data("mx_shape")
 
 library(ggplot2)
-ggplot(mx_shape) +
+ggplot2::ggplot(mx_shape) +
             geom_sf(col = "gray90") +
             geom_sf(data = with_ports_sf, aes(col = location)) +
             facet_wrap( ~ location) +
