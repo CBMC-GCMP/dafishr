@@ -13,4 +13,4 @@
 #' }
 #' @source Data are available under request to CONAPESCA, a raw version of data is available under request to authors
 
-"landings"
+"pacific_landings"
