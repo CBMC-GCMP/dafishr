@@ -13,7 +13,7 @@ experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](h
 The goal of dafishr is to provide an easy way to download VMS and
 analyse data from the Sismep of the Mexican Fishery Commission available
 at [Datos
-Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/resource/309e872a-dbca-4962-b14f-f0da833abebe)
+Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras)
 initiative. Within the package you can find tools that allows you to
 download VMS data, wrangle and clean raw data, and analyse tracks.
 
