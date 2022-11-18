@@ -37,9 +37,6 @@
     <loc>https://cbmc-gcmp.github.io/dafishr/reference/join_ports_locations.html</loc>
   </url>
   <url>
-    <loc>https://cbmc-gcmp.github.io/dafishr/reference/landings.html</loc>
-  </url>
-  <url>
     <loc>https://cbmc-gcmp.github.io/dafishr/reference/model_vms.html</loc>
   </url>
   <url>
@@ -65,6 +62,9 @@
   </url>
   <url>
     <loc>https://cbmc-gcmp.github.io/dafishr/reference/mx_shape.html</loc>
+  </url>
+  <url>
+    <loc>https://cbmc-gcmp.github.io/dafishr/reference/pacific_landings.html</loc>
   </url>
   <url>
     <loc>https://cbmc-gcmp.github.io/dafishr/reference/pipe.html</loc>
