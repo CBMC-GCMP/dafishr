@@ -3,7 +3,7 @@ pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
   dafisr: dafisr.html
-last_built: 2022-11-18T20:50Z
+last_built: 2022-11-18T21:58Z
 urls:
   reference: https://cbmc-gcmp.github.io/dafishr/reference
   article: https://cbmc-gcmp.github.io/dafishr/articles
