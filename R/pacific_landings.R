@@ -1,8 +1,10 @@
 #' Catch data from the vessels in Mexico
 #'
-#' A `data.frame` object containing catch data per each vessel from 2015 to 2020
+#' A `data.frame` object containing catch data per each vessel from 2001 to 2021.
+#' Vessels are only from the Pacific and are only Tuna, Sharks, and Marlin catches.
+#' The dataset was created by wrangling and filtering the raw data (available under request to the authors).
 #'
-#' @format A `data.frame`  with 111,369 rows and 7 columns
+#' @format A `data.frame`  with 33,130 rows and 5 columns
 #' \describe{
 #'   \item{date}{Date of the catch report}
 #'   \item{rnp_activo}{Vessel RNP unique ID code}
