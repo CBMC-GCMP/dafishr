@@ -2,7 +2,7 @@
 #'
 #' A `data.frame` object containing modeled fishing activity per each zone (EEZ and MPAs) in terms of hrs from 2008 to 2021.
 #'
-#' @format A `data.frame`  with 259,310,369 rows and 5 columns
+#' @format A `data.frame`  with 259,310 rows and 5 columns
 #' \describe{
 #'   \item{year}{year of the activity}
 #'   \item{month}{month of the activity}
