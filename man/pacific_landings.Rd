@@ -5,7 +5,7 @@
 \alias{pacific_landings}
 \title{Catch data from the vessels in Mexico}
 \format{
-A \code{data.frame}  with 33,130 rows and 5 columns
+A \code{data.frame}  with 23,231 rows and 5 columns
 \describe{
 \item{date}{Date of the catch report}
 \item{rnp_activo}{Vessel RNP unique ID code}
@@ -22,7 +22,7 @@ Data are available under request to CONAPESCA, a raw version of data is availabl
 pacific_landings
 }
 \description{
-A \code{data.frame} object containing catch data per each vessel from 2001 to 2021.
+A \code{data.frame} object containing catch data per each vessel from 2008 to 2021.
 Vessels are only from the Pacific and are only Tuna, Sharks, and Marlin catches.
 The dataset was created by wrangling and filtering the raw data (available under request to the authors).
 }
