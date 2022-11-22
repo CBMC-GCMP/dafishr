@@ -37,7 +37,13 @@
     <loc>https://cbmc-gcmp.github.io/dafishr/reference/join_ports_locations.html</loc>
   </url>
   <url>
+    <loc>https://cbmc-gcmp.github.io/dafishr/reference/landings.html</loc>
+  </url>
+  <url>
     <loc>https://cbmc-gcmp.github.io/dafishr/reference/model_vms.html</loc>
+  </url>
+  <url>
+    <loc>https://cbmc-gcmp.github.io/dafishr/reference/month_vessel_hrs.html</loc>
   </url>
   <url>
     <loc>https://cbmc-gcmp.github.io/dafishr/reference/mpas_buffers.html</loc>
