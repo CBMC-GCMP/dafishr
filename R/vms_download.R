@@ -1,9 +1,9 @@
 #' Download VMS raw data
 #'
-#' This functions download data form the datos abiertos inititative.
+#' This functions download data form the datos abiertos initiative
 #'
 #'
-#' Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/resource/309e872a-dbca-4962-b14f-f0da833abebe
+#' Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras
 #' Downloaded data are stored automatically in a `VMS-data` folder. Within the main folder, data is organized in
 #' different folders by months (in spanish names) and within each there are multiple `.csv` files
 #' each containing two weeks of data points.

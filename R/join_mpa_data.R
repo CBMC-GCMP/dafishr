@@ -5,7 +5,7 @@
 #' It adds three columns `zone`, `mpa_decree`, `state`, `municipality`, `region`, which are data from the
 #' MPAs polygon. `zone` contains the name of the MPA (in Spanish) and when the vessel is outside an MPA polygon is dubbed as `open area`,
 #' `mpa_decree` contains the type of MPA (such as National Park, etc.),
-#' `state` contains the Mexican state with juridisction on the MPA, `municipality` contains the Mexican municipality with jurisdiction over the MPA,
+#' `state` contains the Mexican state with jurisdiction on the MPA, `municipality` contains the Mexican municipality with jurisdiction over the MPA,
 #' and `region` contains the overall location of the MPA (in Spanish)
 #'
 #' @param x A data.frame with VMS data that must contain columns longitude and latitude

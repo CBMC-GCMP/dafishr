@@ -51,7 +51,7 @@ cleaned because they contained `NULL` values in coordinates.
 
 ## Spatial wrangling
 
-Once the dataset is wrangled, there are some other preprocessing steps to follow. First, all points that fall inland should be eliminated. This is because VMS data are vessels, thus points falling inland are errors in data registration. For that we will upload the `mx_inland` shapefile which helps eliminating all the points within a cerain distance from the coastline. 
+Once the dataset is wrangled, there are some other preprocessing steps to follow. First, all points that fall inland should be eliminated. This is because VMS data are vessels, thus points falling inland are errors in data registration. For that we will upload the `mx_inland` shapefile which helps eliminating all the points within a certain distance from the coastline. 
 
 ```{r eval=FALSE}
 data("mx_inland") # Shapefile of inland Mexico area

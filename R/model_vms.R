@@ -1,4 +1,4 @@
-#' Vessel Modelling with Gaussian Mixture Models
+#' Vessel Modeling with Gaussian Mixture Models
 #'
 #' This function uses `normalmixEM` from the `mixtools` package to model speed of vessels and estimates their behavior.
 #' Specifically, if the vessel was in a fishing activity or cruising

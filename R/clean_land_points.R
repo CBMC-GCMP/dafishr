@@ -7,7 +7,7 @@
 #' The function calls a stored shapefile `mx_inland` which is a custom `sf` object created using a coastline buffer to avoid eliminating points because of lack of precision within the shapefiles.
 #' The function works with any dataset containing coordinate points in `crs = 4326` and named `latitude` and `longitude`. See first example with a
 #' non-VMS dataset.
-#' A second example below showes the usage on VMS sample data.
+#' A second example below shows the usage on VMS sample data.
 #'
 #' @section Warning:
 #' This function takes a while!! To test you can use the `dplyr::sample_n()` function as it is shown in the example.
