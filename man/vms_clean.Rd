@@ -20,7 +20,7 @@ This function cleans raw VMS data column files, eliminate NULL values in coordin
 \details{
 It takes a raw data file downloaded using the \code{vms_download()} function by specifying directly its path
 or by referencing a data.frame already stored as an R object. If path is used, column with the name of the
-raw file is conveniently added as future reference. It also split date into three new colums \code{year}, \code{month}, \code{day}, and retains the original \code{date} column.
+raw file is conveniently added as future reference. It also split date into three new columns \code{year}, \code{month}, \code{day}, and retains the original \code{date} column.
 This function can be used with \code{apply} functions over a list
 of files or it can be paralleled using \code{furrr} functions.
 }

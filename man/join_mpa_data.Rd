@@ -21,7 +21,7 @@ The function spatially joins the VMS points with the MPA polygons in Mexico.
 It adds three columns \code{zone}, \code{mpa_decree}, \code{state}, \code{municipality}, \code{region}, which are data from the
 MPAs polygon. \code{zone} contains the name of the MPA (in Spanish) and when the vessel is outside an MPA polygon is dubbed as \verb{open area},
 \code{mpa_decree} contains the type of MPA (such as National Park, etc.),
-\code{state} contains the Mexican state with juridisction on the MPA, \code{municipality} contains the Mexican municipality with jurisdiction over the MPA,
+\code{state} contains the Mexican state with jurisdiction on the MPA, \code{municipality} contains the Mexican municipality with jurisdiction over the MPA,
 and \code{region} contains the overall location of the MPA (in Spanish)
 }
 \examples{

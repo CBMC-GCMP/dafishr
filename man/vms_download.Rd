@@ -13,10 +13,10 @@ vms_download(year = lubridate::year((Sys.time())) - 1)
 saves downloaded data into a folder called \code{VMS-data} within the working directory
 }
 \description{
-This functions download data form the datos abiertos inititative.
+This functions download data form the datos abiertos initiative
 }
 \details{
-Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/resource/309e872a-dbca-4962-b14f-f0da833abebe
+Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras
 Downloaded data are stored automatically in a \code{VMS-data} folder. Within the main folder, data is organized in
 different folders by months (in spanish names) and within each there are multiple \code{.csv} files
 each containing two weeks of data points.

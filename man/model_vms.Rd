@@ -2,7 +2,7 @@
 % Please edit documentation in R/model_vms.R
 \name{model_vms}
 \alias{model_vms}
-\title{Vessel Modelling with Gaussian Mixture Models}
+\title{Vessel Modeling with Gaussian Mixture Models}
 \usage{
 model_vms(df)
 }
