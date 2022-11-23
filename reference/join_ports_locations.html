@@ -103,6 +103,7 @@ provided by INEGI https://en.www.inegi.org.mx/</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">vms_subset</span> <span class="op">&lt;-</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_n</a></span><span class="op">(</span><span class="va">vms_cleaned</span>, <span class="fl">1000</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">with_ports</span> <span class="op">&lt;-</span> <span class="fu">join_ports_locations</span><span class="op">(</span><span class="va">vms_subset</span><span class="op">)</span></span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Spherical geometry (s2) switched off</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>st_buffer does not correctly buffer longitude/latitude data</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> dist is assumed to be in decimal degrees (arc_degrees).</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> although coordinates are longitude/latitude, st_union assumes that they are</span>
