@@ -19,7 +19,7 @@
 #' @export
 #' @importFrom rlang .data
 #' @examples
-#'
+#' \dontrun{
 #' # with non VMS data
 #' x <- data.frame(
 #'   longitude = runif(1000, min = -150, max = -80),
@@ -48,6 +48,7 @@
 #'
 #' # in the provided example only few inland points are eliminated.
 #' # There are more evident one within historical data.
+#' }
 clean_land_points <- function(x, mx_inland = mx_inland) {
   sf::sf_use_s2(FALSE)
 
