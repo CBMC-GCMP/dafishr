@@ -11,6 +11,6 @@
 #'   \item{geometry}{column containing geometry details}
 #'   ...
 #' }
-#' @source \url{https://cran.r-project.org/web/packages/rnaturalearth/README.html}
+#' @source \url{https://cran.r-project.org/package=rnaturalearth}
 
 "mx_coastline_buffer"
