@@ -15,7 +15,7 @@ A simple feature collection with 177 features and 3 fields
 }
 }
 \source{
-\url{https://cran.r-project.org/web/packages/rnaturalearth/README.html}
+\url{https://cran.r-project.org/package=rnaturalearth}
 }
 \usage{
 mx_coastline
