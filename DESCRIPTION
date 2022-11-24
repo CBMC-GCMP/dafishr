@@ -1,5 +1,5 @@
 Package: dafishr
-Title: Download, Wrangle, and Analyse VMS data
+Title: Download, Wrangle, and Analyse VMS Data
 Version: 1.0.0
 Authors@R: c(
     person("Fabio", "Favoretto", , "fabio@gocmarineprogram.org", role = c("aut", "cre"),
