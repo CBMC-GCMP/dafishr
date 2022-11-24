@@ -8,6 +8,6 @@
 #'   \item{vessel_name}{Name of the vessel}
 #'   ...
 #' }
-#' @source \url{www.datamares.org}
+#' @source \url{https://www.datamares.org}
 
 "pelagic_vessels_permits"
