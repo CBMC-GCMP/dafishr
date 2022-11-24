@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# dafishr <a href='https://cbmc-gcmp.github.io/dafishr'><img src="man/figures/logo.png" align="right" height="139"/></a>
+# dafishr <a href='https://cbmc-gcmp.github.io/dafishr/'><img src="man/figures/logo.png" align="right" height="139"/></a>
 
 <!-- badges: start -->
 
@@ -15,7 +15,7 @@ status](https://www.r-pkg.org/badges/version/dafishr)](https://CRAN.R-project.or
 The goal of dafishr is to provide an easy way to download VMS and
 analyse data from the Sismep of the Mexican Fishery Commission available
 at [Datos
-Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras)
+Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/)
 initiative. Within the package you can find tools that allows you to
 download VMS data, wrangle and clean raw data, and analyse tracks.
 
