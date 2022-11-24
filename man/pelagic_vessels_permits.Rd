@@ -13,7 +13,7 @@ A \code{data.frame} with 719 rows and 2 columns.
 }
 }
 \source{
-\url{https://www.datamares.org}
+\url{https://www.datamares.org/}
 }
 \usage{
 pelagic_vessels_permits
