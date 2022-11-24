@@ -14,9 +14,8 @@ Description: Allows to download, clean and analyse raw VMS data from
     <https://cbmc-gcmp.github.io/dafishr/index.html>.
 License: MIT + file LICENSE
 URL: https://github.com/CBMC-GCMP/dafishr,
-    https://cbmc-gcmp.github.io/dafishr,
     https://cbmc-gcmp.github.io/dafishr/
-BugReports: https://github.com/CBMC-GCMP/dafishr
+BugReports: https://github.com/CBMC-GCMP/dafishr/issues/
 Depends: 
     R (>= 2.10)
 Imports: 
