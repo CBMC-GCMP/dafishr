@@ -1,4 +1,4 @@
-#' Buffer around remote Marine Protected Areas of Mexico
+#' Buffer around remote Marine Protected Areas, MPAs, of Mexico
 #'
 #' A `sf` object containing shapefiles of buffers around remote MPAs in Mexico.
 #' The buffer equals the area inside each MPA polygon and was created to assess differences in fishing
