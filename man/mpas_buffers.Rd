@@ -3,7 +3,7 @@
 \docType{data}
 \name{mpas_buffers}
 \alias{mpas_buffers}
-\title{Buffer around remote Marine Protected Areas of Mexico}
+\title{Buffer around remote Marine Protected Areas, MPAs, of Mexico}
 \format{
 A simple feature collection with 5 features and 2 fields
 \describe{

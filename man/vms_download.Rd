@@ -2,7 +2,7 @@
 % Please edit documentation in R/vms_download.R
 \name{vms_download}
 \alias{vms_download}
-\title{Download VMS raw data}
+\title{Download Vessel Monitoring System, VMS, raw data}
 \usage{
 vms_download(year = lubridate::year((Sys.time())) - 1)
 }
@@ -16,9 +16,9 @@ saves downloaded data into a folder called \code{VMS-data} within the working di
 This functions download data form the datos abiertos initiative
 }
 \details{
-Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras
+Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/
 Downloaded data are stored automatically in a \code{VMS-data} folder. Within the main folder, data is organized in
-different folders by months (in spanish names) and within each there are multiple \code{.csv} files
+different folders by months (in Spanish names) and within each there are multiple \code{.csv} files
 each containing two weeks of data points.
 }
 \examples{

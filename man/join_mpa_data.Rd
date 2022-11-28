@@ -2,7 +2,7 @@
 % Please edit documentation in R/join_mpa_data.R
 \name{join_mpa_data}
 \alias{join_mpa_data}
-\title{Detect fishing vessel presence within MPA polygons in Mexico}
+\title{Detect fishing vessel presence within Marine Protected Areas polygons in Mexico}
 \usage{
 join_mpa_data(x, all_mpas = all_mpas)
 }
@@ -15,7 +15,7 @@ join_mpa_data(x, all_mpas = all_mpas)
 A data.frame
 }
 \description{
-The function spatially joins the VMS points with the MPA polygons in Mexico.
+The function spatially joins the Vessels Monitoring System, VMS, points with the Marine Protected Area, MPAs, polygons in Mexico.
 }
 \details{
 It adds three columns \code{zone}, \code{mpa_decree}, \code{state}, \code{municipality}, \code{region}, which are data from the

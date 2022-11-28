@@ -18,9 +18,12 @@ A data.frame object
 This functions eliminates points falling inland by using \code{st_difference()} function from the \code{sf} package.
 }
 \details{
-Points falling inland in VMS dataset are obvious mistakes, thus need to be eliminated from the data.
-The function calls a stored shapefile \code{mx_inland} which is a custom \code{sf} object created using a coastline buffer to avoid eliminating points because of lack of precision within the shapefiles.
-The function works with any dataset containing coordinate points in \code{crs = 4326} and named \code{latitude} and \code{longitude}. See first example with a
+Points falling inland in Vessel Monitoring System, VMS, dataset are obvious mistakes, thus need to be eliminated from the data.
+The function calls a stored shapefile \code{mx_inland} which is a custom \code{sf} object
+created using a coastline buffer to avoid eliminating points because of lack of
+precision within the shapefiles.
+The function works with any dataset containing coordinate points in \code{crs = 4326}
+and named \code{latitude} and \code{longitude}. See first example with a
 non-VMS dataset.
 A second example below shows the usage on VMS sample data.
 }

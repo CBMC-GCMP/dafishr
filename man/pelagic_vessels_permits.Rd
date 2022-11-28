@@ -19,6 +19,7 @@ A \code{data.frame} with 719 rows and 2 columns.
 pelagic_vessels_permits
 }
 \description{
-A \code{data.frame} object extracted from a raw dataset of permits available under request at dataMares (https://datamares.org/)
+A \code{data.frame} object extracted from a raw dataset of permits available
+under request at dataMares (https://datamares.org/)
 }
 \keyword{datasets}

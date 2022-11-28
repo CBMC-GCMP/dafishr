@@ -2,7 +2,7 @@
 % Please edit documentation in R/preprocessing_vms.R
 \name{preprocessing_vms}
 \alias{preprocessing_vms}
-\title{Preprocessing VMS data}
+\title{Preprocessing Vessel Monitoring System data}
 \usage{
 preprocessing_vms(path)
 }
@@ -17,8 +17,8 @@ each of the files that are used as input to the function.
 }
 \description{
 This functions bundles all the cleaning functions and allows them to be
-easily used in parallel processing to speed up the cleaning of all the VMS data \code{.csv} files.
-While it runs, it creates an folder called \code{preprocessed} that will store VMS data that
+easily used in parallel processing to speed up the cleaning of all the Vessel Monitoring System, VMS, data \code{.csv} files.
+While it runs, it creates a folder called \code{preprocessed} that will store VMS data that
 underwent the preprocessing. If multiple files are used as input (see examples below) it will create
 multiple files. All the outputs are in \code{.fst} format, which allows fast upload of large files.
 See \code{fst} package documentation for further information https://www.fstpackage.org/.

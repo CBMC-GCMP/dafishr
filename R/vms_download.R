@@ -16,12 +16,12 @@
 #' @examples
 #'
 #' # Download single year
-#' \donttest{
+#' \dontrun{
 #' vms_download(2019)
 #' }
 #'
 #' # Download multiple years
-#' \donttest{
+#' \dontrun{
 #' vms_download(2015:2021)
 #' }
 #'

@@ -3,7 +3,7 @@
 \docType{data}
 \name{sample_dataset}
 \alias{sample_dataset}
-\title{VMS sample dataset from Mexican fishery commission}
+\title{Vessel Monitoring System, VMS, sample dataset from Mexican fishery commission}
 \format{
 A \code{data.frame} with 10,000 rows and 9 columns.
 \describe{
@@ -26,6 +26,6 @@ A \code{data.frame} with 10,000 rows and 9 columns.
 sample_dataset
 }
 \description{
-A \code{data.frame} object extracted from a raw dataset of VMS data from the year 2019.
+A \code{data.frame} object extracted from a raw dataset of Vessels Monitoring System, VMS, data from the year 2019.
 }
 \keyword{datasets}
