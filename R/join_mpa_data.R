@@ -1,6 +1,6 @@
-#' Detect fishing vessel presence within MPA polygons in Mexico
+#' Detect fishing vessel presence within Marine Protected Areas polygons in Mexico
 #'
-#' The function spatially joins the VMS points with the MPA polygons in Mexico.
+#' The function spatially joins the Vessels Monitoring System, VMS, points with the Marine Protected Area, MPAs, polygons in Mexico.
 #'
 #' It adds three columns `zone`, `mpa_decree`, `state`, `municipality`, `region`, which are data from the
 #' MPAs polygon. `zone` contains the name of the MPA (in Spanish) and when the vessel is outside an MPA polygon is dubbed as `open area`,
