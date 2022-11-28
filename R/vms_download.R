@@ -1,11 +1,11 @@
-#' Download VMS raw data
+#' Download Vessel Monitoring System, VMS, raw data
 #'
 #' This functions download data form the datos abiertos initiative
 #'
 #'
-#' Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras
+#' Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/
 #' Downloaded data are stored automatically in a `VMS-data` folder. Within the main folder, data is organized in
-#' different folders by months (in spanish names) and within each there are multiple `.csv` files
+#' different folders by months (in Spanish names) and within each there are multiple `.csv` files
 #' each containing two weeks of data points.
 #'
 #' @param year year of data that user wants to download are selected default to the last year. A vector of years can also be used.
@@ -16,12 +16,12 @@
 #' @examples
 #'
 #' # Download single year
-#' \dontrun{
+#' \donttest{
 #' vms_download(2019)
 #' }
 #'
 #' # Download multiple years
-#' \dontrun{
+#' \donttest{
 #' vms_download(2015:2021)
 #' }
 #'

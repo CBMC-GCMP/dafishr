@@ -1,8 +1,8 @@
-#' Preprocessing VMS data
+#' Preprocessing Vessel Monitoring System data
 #'
 #' This functions bundles all the cleaning functions and allows them to be
-#' easily used in parallel processing to speed up the cleaning of all the VMS data `.csv` files.
-#' While it runs, it creates an folder called `preprocessed` that will store VMS data that
+#' easily used in parallel processing to speed up the cleaning of all the Vessel Monitoring System, VMS, data `.csv` files.
+#' While it runs, it creates a folder called `preprocessed` that will store VMS data that
 #' underwent the preprocessing. If multiple files are used as input (see examples below) it will create
 #' multiple files. All the outputs are in `.fst` format, which allows fast upload of large files.
 #' See `fst` package documentation for further information https://www.fstpackage.org/.

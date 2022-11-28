@@ -1,6 +1,6 @@
-#' VMS sample dataset from Mexican fishery commission
+#' Vessel Monitoring System, VMS, sample dataset from Mexican fishery commission
 #'
-#' A `data.frame` object extracted from a raw dataset of VMS data from the year 2019.
+#' A `data.frame` object extracted from a raw dataset of Vessels Monitoring System, VMS, data from the year 2019.
 #'
 #' @format A `data.frame` with 10,000 rows and 9 columns.
 #' \describe{
