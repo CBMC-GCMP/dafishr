@@ -90,15 +90,16 @@
 <div class="section level2">
 <h2 id="downloading-raw-data-on-your-computer">Downloading raw data on your computer<a class="anchor" aria-label="anchor" href="#downloading-raw-data-on-your-computer"></a>
 </h2>
-<p>VMS data comes organized by year. The function vms_download()
-automatically downloads it and store into the working directory in a
-VMS-data folder. Within the folder raw data are organized by monthly
-folders (with names in Spanish) that contain several .csv files that
-usually store byweekly data intervals. Each file have different rows and
-some have different column names. For that we highly recommend to use
-the vms_clean() function. The latter corrects several inconsistencies
-within the raw data. If you have any suggestion or spot some errors we
-will be very pleased if you create an issue.</p>
+<p>Vessel Monitoring System (VMS) data comes organized by year. The
+function <code><a href="../reference/vms_download.html">vms_download()</a></code> automatically downloads it and
+store into the working directory in a VMS-data folder. Within the folder
+raw data are organized by monthly folders (with names in Spanish) that
+contain several .csv files that usually store byweekly data intervals.
+Each file have different rows and some have different column names. For
+that we highly recommend to use the <code><a href="../reference/vms_clean.html">vms_clean()</a></code> function.
+The latter corrects several inconsistencies within the raw data. If you
+have any suggestion or spot some errors we will be very pleased if you
+create an issue.</p>
 <p>The function below downloads data from the year 2019.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/CBMC-GCMP/dafishr" class="external-link">dafishr</a></span><span class="op">)</span></span>
@@ -108,16 +109,16 @@ will be very pleased if you create an issue.</p>
 <div class="section level2">
 <h2 id="using-the-cleaning-functions">Using the cleaning functions<a class="anchor" aria-label="anchor" href="#using-the-cleaning-functions"></a>
 </h2>
-<p>The first vms_clean() function works on the VMS data.frame. You can
-either load downloaded data or use the sample_dataset that you can call
-and clean like so:</p>
+<p>The first <code><a href="../reference/vms_clean.html">vms_clean()</a></code> function works on the VMS
+<code>data.frame</code>. You can either load downloaded data or use the
+<code>sample_dataset</code> that you can call and clean like so:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/CBMC-GCMP/dafishr" class="external-link">dafishr</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"sample_dataset"</span><span class="op">)</span></span>
 <span><span class="va">vms_cleaned</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/vms_clean.html">vms_clean</a></span><span class="op">(</span><span class="va">sample_dataset</span><span class="op">)</span></span></code></pre></div>
-<p>The vms_clean() function returns a message with the number of rows
-that were cleaned because they contained <code>NULL</code> values in
-coordinates.</p>
+<p>The <code><a href="../reference/vms_clean.html">vms_clean()</a></code> function returns a message with the
+number of rows that were cleaned because they contained
+<code>NULL</code> values in coordinates.</p>
 </div>
 <div class="section level2">
 <h2 id="spatial-wrangling">Spatial wrangling<a class="anchor" aria-label="anchor" href="#spatial-wrangling"></a>
