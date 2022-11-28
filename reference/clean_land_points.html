@@ -78,9 +78,12 @@
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>Points falling inland in VMS dataset are obvious mistakes, thus need to be eliminated from the data.
-The function calls a stored shapefile <code>mx_inland</code> which is a custom <code>sf</code> object created using a coastline buffer to avoid eliminating points because of lack of precision within the shapefiles.
-The function works with any dataset containing coordinate points in <code>crs = 4326</code> and named <code>latitude</code> and <code>longitude</code>. See first example with a
+    <p>Points falling inland in Vessel Monitoring System, VMS, dataset are obvious mistakes, thus need to be eliminated from the data.
+The function calls a stored shapefile <code>mx_inland</code> which is a custom <code>sf</code> object
+created using a coastline buffer to avoid eliminating points because of lack of
+precision within the shapefiles.
+The function works with any dataset containing coordinate points in <code>crs = 4326</code>
+and named <code>latitude</code> and <code>longitude</code>. See first example with a
 non-VMS dataset.
 A second example below shows the usage on VMS sample data.</p>
     </div>
