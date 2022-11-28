@@ -3,9 +3,12 @@
 #' This functions eliminates points falling inland by using `st_difference()` function from the `sf` package.
 #'
 #'
-#' Points falling inland in VMS dataset are obvious mistakes, thus need to be eliminated from the data.
-#' The function calls a stored shapefile `mx_inland` which is a custom `sf` object created using a coastline buffer to avoid eliminating points because of lack of precision within the shapefiles.
-#' The function works with any dataset containing coordinate points in `crs = 4326` and named `latitude` and `longitude`. See first example with a
+#' Points falling inland in Vessel Monitoring System, VMS, dataset are obvious mistakes, thus need to be eliminated from the data.
+#' The function calls a stored shapefile `mx_inland` which is a custom `sf` object
+#' created using a coastline buffer to avoid eliminating points because of lack of
+#' precision within the shapefiles.
+#' The function works with any dataset containing coordinate points in `crs = 4326`
+#' and named `latitude` and `longitude`. See first example with a
 #' non-VMS dataset.
 #' A second example below shows the usage on VMS sample data.
 #'
