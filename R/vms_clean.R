@@ -52,7 +52,10 @@ vms_clean <- function(path_to_data) {
       empty_coordinates <- x |>
                   dplyr::filter(is.na(.data$latitude)) |>
                   dplyr::filter(is.na(.data$longitude))
-      res <- x  |>
+
+      message(paste0("Cleaned: ", (nrow(empty_coordinates)), " empty rows from data! \n"))
+
+       x  |>
         dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) |>
         dplyr::mutate(year = lubridate::year(date)) |>
         dplyr::mutate(month = lubridate::month(date)) |>
@@ -67,7 +70,6 @@ vms_clean <- function(path_to_data) {
         dplyr::mutate(file_name = stringr::str_remove(path_to_data, "data/VMS-data/raw//"))
 
 
-      message(paste0("Cleaned: ", (nrow(empty_coordinates)), " empty rows from data! \n"))
 
     } else if (is.data.frame(path_to_data) == TRUE) {
       x <- path_to_data
@@ -91,7 +93,9 @@ vms_clean <- function(path_to_data) {
                   dplyr::filter(is.na(.data$latitude)) |>
                   dplyr::filter(is.na(.data$longitude))
 
-      res <- x |>
+      message(paste0("Cleaned: ", (nrow(empty_coordinates)), " empty rows from data! \n"))
+
+      x |>
         dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) |>
         dplyr::mutate(year = lubridate::year(date)) |>
         dplyr::mutate(month = lubridate::month(date)) |>
@@ -107,7 +111,6 @@ vms_clean <- function(path_to_data) {
         dplyr::mutate(direction = as.numeric(.data$direction)) |>
         dplyr::mutate(speed = as.numeric(.data$speed))
 
-      message(paste0("Cleaned: ", (nrow(empty_coordinates)), " empty rows from data! \n"))
 
 
     } else {
