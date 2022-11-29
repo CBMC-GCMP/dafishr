@@ -1,6 +1,6 @@
 #' Download Vessel Monitoring System, VMS, raw data
 #'
-#' This functions download data form the datos abiertos initiative
+#' This functions download data form the *Datos Abiertos* initiative
 #'
 #'
 #' Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/
