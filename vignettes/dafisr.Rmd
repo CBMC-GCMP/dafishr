@@ -29,7 +29,7 @@ The function below downloads data from the year 2019.
 ```{r eval=FALSE}
 library(dafishr)
 
-vms_download(2019)
+vms_download(year = 2019, destination.folder = getwd())
 ```
 
 
