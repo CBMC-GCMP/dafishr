@@ -16,6 +16,7 @@
 #'
 #' @return saves downloaded data into a folder called `VMS-data` within the working directory
 #' @export
+#' @import stringr
 #'
 #' @examples
 #'
@@ -41,7 +42,7 @@ vms_download <- function(year = lubridate::year((Sys.time())) - 1,
             if(check.url.certificate == TRUE) {
 
                         utils::download.file(url, destfile = stringr::str_replace_all(paste0(destination.folder, "/download_temp.zip"), "//", "/"))
-                        utils::unzip(paste0(destination.folder, "/download_temp.zip"), exdir = paste0(destination.folder, "VMS-data"))
+                        utils::unzip(stringr::str_replace_all(paste0(destination.folder, "/download_temp.zip"), "//", "/"), exdir = stringr::str_replace_all(paste0(destination.folder, "/VMS-data"), "//", "/"))
                         unlink(paste0(destination.folder, "/download_temp.zip"))
 
             } else {
@@ -49,7 +50,7 @@ vms_download <- function(year = lubridate::year((Sys.time())) - 1,
                                 download.file.extra="--no-check-certificate")
 
                         utils::download.file(url, destfile = stringr::str_replace_all(paste0(destination.folder, "/download_temp.zip"), "//", "/"))
-                        utils::unzip(paste0(destination.folder, "/download_temp.zip"), exdir = paste0(destination.folder, "VMS-data"))
+                        utils::unzip(stringr::str_replace_all(paste0(destination.folder, "/download_temp.zip"), "//", "/"), exdir = stringr::str_replace_all(paste0(destination.folder, "/VMS-data"), "//", "/"))
                         unlink(paste0(destination.folder, "/download_temp.zip"))
             }
 
