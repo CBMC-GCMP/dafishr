@@ -49,7 +49,9 @@ vms_clean <- function(path_to_data) {
         "speed",
         "direction"
       )
-
+      empty_coordinates <- x |>
+                  dplyr::filter(is.na(.data$latitude)) |>
+                  dplyr::filter(is.na(.data$longitude))
       res <- x  |>
         dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) |>
         dplyr::mutate(year = lubridate::year(date)) |>
@@ -64,11 +66,9 @@ vms_clean <- function(path_to_data) {
         dplyr::filter(!is.na(.data$speed)) |>
         dplyr::mutate(file_name = stringr::str_remove(path_to_data, "data/VMS-data/raw//"))
 
-      empty_coordinates <- x |>
-        dplyr::filter(is.na(.data$latitude)) |>
-        dplyr::filter(is.na(.data$longitude))
-      message(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
-      res
+
+      message(paste0("Cleaned: ", (nrow(empty_coordinates)), " empty rows from data! \n"))
+
     } else if (is.data.frame(path_to_data) == TRUE) {
       x <- path_to_data
 
@@ -83,6 +83,13 @@ vms_clean <- function(path_to_data) {
         "speed",
         "direction"
       )
+      empty_coordinates <- x |>
+                  dplyr::mutate(
+                              latitude = as.numeric(.data$latitude),
+                              longitude = as.numeric(.data$longitude)
+                  ) |>
+                  dplyr::filter(is.na(.data$latitude)) |>
+                  dplyr::filter(is.na(.data$longitude))
 
       res <- x |>
         dplyr::mutate(date = as.POSIXct(date, format = "%d/%m/%Y %H:%M", tz = "UTC")) |>
@@ -100,15 +107,9 @@ vms_clean <- function(path_to_data) {
         dplyr::mutate(direction = as.numeric(.data$direction)) |>
         dplyr::mutate(speed = as.numeric(.data$speed))
 
-      empty_coordinates <- x |>
-        dplyr::mutate(
-          latitude = as.numeric(.data$latitude),
-          longitude = as.numeric(.data$longitude)
-        ) |>
-        dplyr::filter(is.na(.data$latitude)) |>
-        dplyr::filter(is.na(.data$longitude))
-      message(paste0("Cleaned: ", print(nrow(empty_coordinates)), " empty rows from data! \n"))
-      res
+      message(paste0("Cleaned: ", (nrow(empty_coordinates)), " empty rows from data! \n"))
+
+
     } else {
       stop("Data must be a path to folder or data.frame object \n")
     }
