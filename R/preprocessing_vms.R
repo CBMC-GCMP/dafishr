@@ -32,7 +32,7 @@
 #'
 #' # An example on downloaded data
 #' \dontrun{
-#' vms_download(year = 2019, destination.folder = getwd()) # downloads raw data from 2019 with standard subfolders
+#' vms_download(year = 2019, destination.folder = getwd()) # downloads raw data
 #'
 #' preprocessing_vms("VMS-data/RLMSEP_2019/1.-ENERO/01-31 ENE 2008.csv")
 #' }
