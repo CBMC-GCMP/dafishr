@@ -72,15 +72,20 @@ See <code>fst</code> package documentation for further information https://www.f
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">preprocessing_vms</span><span class="op">(</span><span class="va">path</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">preprocessing_vms</span><span class="op">(</span><span class="va">files.path</span>, <span class="va">destination.folder</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <dl><dt>path</dt>
+    <dl><dt>files.path</dt>
 <dd><p>it can be a path to the file downloaded or the data object itself.
 If function is used with a path it adds a <code>file</code> column to the returning data.frame object that
 stores the name of the file as a reference.</p></dd>
+
+
+<dt>destination.folder</dt>
+<dd><p>it must record the path to a folder were all the preprocessed files
+will be stored.</p></dd>
 
 </dl></div>
     <div class="section level2">
@@ -101,7 +106,7 @@ each of the files that are used as input to the function.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># An example on downloaded data</span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="vms_download.html">vms_download</a></span><span class="op">(</span><span class="fl">2019</span><span class="op">)</span> <span class="co"># downloads raw data from 2019 with standard subfolders</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="vms_download.html">vms_download</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fl">2019</span>, destination.folder <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html" class="external-link">getwd</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="co"># downloads raw data</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">preprocessing_vms</span><span class="op">(</span><span class="st">"VMS-data/RLMSEP_2019/1.-ENERO/01-31 ENE 2008.csv"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
