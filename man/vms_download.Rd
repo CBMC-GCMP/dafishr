@@ -4,22 +4,32 @@
 \alias{vms_download}
 \title{Download Vessel Monitoring System, VMS, raw data}
 \usage{
-vms_download(year = lubridate::year((Sys.time())) - 1)
+vms_download(
+  year = lubridate::year((Sys.time())) - 1,
+  destination.folder,
+  check.url.certificate = TRUE
+)
 }
 \arguments{
 \item{year}{year of data that user wants to download are selected default to the last year. A vector of years can also be used.}
+
+\item{destination.folder}{can be set to a folder where user want the data to be downloaded into. Defaults to working directory.}
+
+\item{check.url.certificate}{logical. Under Ubuntu systems the function might draw a certificate error, you can deactivate the certificate check by setting this to \code{FALSE} and should work.}
 }
 \value{
 saves downloaded data into a folder called \code{VMS-data} within the working directory
 }
 \description{
-This functions download data form the datos abiertos initiative
+This functions download data form the \emph{Datos Abiertos} initiative
 }
 \details{
 Data are downloaded from this link: https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/
-Downloaded data are stored automatically in a \code{VMS-data} folder. Within the main folder, data is organized in
-different folders by months (in Spanish names) and within each there are multiple \code{.csv} files
-each containing two weeks of data points.
+Downloaded data will be downloaded and decompressed in a \code{VMS-data} folder in
+a location chosen by the user by specifying a path in \code{destination.folder}.
+If a location is not specified it downloads data by default to the current working directory.
+Within the main folder, data is organized in different folders by months (in Spanish names)
+and within each there are multiple \code{.csv} files each containing two weeks of data points.
 }
 \examples{
 

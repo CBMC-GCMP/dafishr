@@ -4,12 +4,15 @@
 \alias{preprocessing_vms}
 \title{Preprocessing Vessel Monitoring System data}
 \usage{
-preprocessing_vms(path)
+preprocessing_vms(files.path, destination.folder)
 }
 \arguments{
-\item{path}{it can be a path to the file downloaded or the data object itself.
+\item{files.path}{it can be a path to the file downloaded or the data object itself.
 If function is used with a path it adds a \code{file} column to the returning data.frame object that
 stores the name of the file as a reference.}
+
+\item{destination.folder}{it must record the path to a folder were all the preprocessed files
+will be stored.}
 }
 \value{
 A \code{.fst} file saved within a \code{preprocessed} directory automatically created that stores
@@ -32,7 +35,7 @@ preprocessing_vms(sample_dataset)
 
 # An example on downloaded data
 \dontrun{
-vms_download(2019) # downloads raw data from 2019 with standard subfolders
+vms_download(year = 2019, destination.folder = getwd()) # downloads raw data
 
 preprocessing_vms("VMS-data/RLMSEP_2019/1.-ENERO/01-31 ENE 2008.csv")
 }
