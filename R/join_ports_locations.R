@@ -37,7 +37,7 @@
 join_ports_locations <-
   function(x, mx_ports = mx_ports, buffer_size = 0.15) {
     if (!"id" %in% colnames(x)) {
-      cat("creating ids...")
+      message("creating ids...")
       x <- x  |>  dplyr::mutate(id = dplyr::row_number())
     } else {
       NULL
