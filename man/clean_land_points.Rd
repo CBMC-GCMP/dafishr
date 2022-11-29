@@ -33,7 +33,7 @@ This function takes a while!! To test you can use the \code{dplyr::sample_n()} f
 }
 
 \examples{
-\dontrun{
+
 # with non VMS data
 x <- data.frame(
   longitude = runif(1000, min = -150, max = -80),
@@ -62,5 +62,5 @@ ggplot(vms_cleaned_sf) +
 
 # in the provided example only few inland points are eliminated.
 # There are more evident one within historical data.
-}
+
 }

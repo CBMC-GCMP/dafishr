@@ -18,7 +18,7 @@ vms_download(
 \item{check.url.certificate}{logical. Under Ubuntu systems the function might draw a certificate error, you can deactivate the certificate check by setting this to \code{FALSE} and should work.}
 }
 \value{
-saves downloaded data into a folder called \code{VMS-data} within the working directory
+saves downloaded data into a folder called \code{VMS-data} within the directory specified
 }
 \description{
 This functions download data form the \emph{Datos Abiertos} initiative
@@ -34,13 +34,11 @@ and within each there are multiple \code{.csv} files each containing two weeks o
 \examples{
 
 # Download single year
-\dontrun{
-vms_download(2019)
+# in Ubuntu it draws a certificate error when downloading, testing in windows and MacOS
+# does not draw that error and you can use default certificate checking.
+\donttest{
+vms_download(2019, destination.folder = tempdir(), check.url.certificate = FALSE)
 }
 
-# Download multiple years
-\dontrun{
-vms_download(2015:2021)
-}
 
 }

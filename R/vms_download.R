@@ -14,21 +14,19 @@
 #' @param destination.folder can be set to a folder where user want the data to be downloaded into. Defaults to working directory.
 #' @param check.url.certificate logical. Under Ubuntu systems the function might draw a certificate error, you can deactivate the certificate check by setting this to `FALSE` and should work.
 #'
-#' @return saves downloaded data into a folder called `VMS-data` within the working directory
+#' @return saves downloaded data into a folder called `VMS-data` within the directory specified
 #' @export
 #' @import stringr
 #'
 #' @examples
 #'
 #' # Download single year
-#' \dontrun{
-#' vms_download(2019)
-#' }
+#' # in Ubuntu it draws a certificate error when downloading, testing in windows and MacOS
+#' # does not draw that error and you can use default certificate checking.
+#'\donttest{
+#' vms_download(2019, destination.folder = tempdir(), check.url.certificate = FALSE)
+#'}
 #'
-#' # Download multiple years
-#' \dontrun{
-#' vms_download(2015:2021)
-#' }
 #'
 vms_download <- function(year = lubridate::year((Sys.time())) - 1,
                          destination.folder,

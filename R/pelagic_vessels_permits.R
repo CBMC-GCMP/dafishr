@@ -5,7 +5,7 @@
 #'
 #' @format A `data.frame` with 719 rows and 2 columns.
 #' \describe{
-#'   \item{RNP}{Unique code identifing the vessel}
+#'   \item{RNP}{Unique code identifying the vessel}
 #'   \item{vessel_name}{Name of the vessel}
 #'   ...
 #' }

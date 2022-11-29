@@ -16,7 +16,7 @@
 #' will be stored.
 #'
 #'
-#' @return A `.fst` file saved within a `preprocessed` directory automatically created that stores
+#' @return A `.fst` file saved within a directory chosen by the user, that is created automatically if does not exist, and that stores
 #' each of the files that are used as input to the function.
 #' @export
 #' @import ggplot2
@@ -26,35 +26,10 @@
 #' @examples
 #'
 #' # An example with the `sample.dataset`
-#' \dontrun{
-#' preprocessing_vms(sample_dataset)
+#' \donttest{
+#' preprocessing_vms(sample_dataset, destination.folder = tempdir())
 #' }
 #'
-#' # An example on downloaded data
-#' \dontrun{
-#' vms_download(year = 2019, destination.folder = getwd()) # downloads raw data
-#'
-#' preprocessing_vms("VMS-data/RLMSEP_2019/1.-ENERO/01-31 ENE 2008.csv")
-#' }
-#'
-#' # An example running everything in parallel on multiple files
-#' \dontrun{
-#'
-#' library(future.apply) # this library is need for parallel processing
-#' library(fst) # this allows to load fst type of files
-#'
-#' # Creating a list of file names from downloaded data (change the path if needed)
-#' file_names <- list.files("VMS-data/", pattern = ".csv", full.names = T, recursive = T)
-#'
-#'
-#' # this plans a parallel session, set workers carefully according to your CPU capabilities
-#' plan(multisession, workers = 2)
-#'
-#' # This runs the function in parallel
-#' system.time(
-#'   future_lapply(file_names, preprocessing_vms)
-#' )
-#' }
 preprocessing_vms <- function(files.path, destination.folder) {
             if (missing(destination.folder)) {
                         stop(

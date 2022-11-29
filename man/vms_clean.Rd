@@ -28,13 +28,11 @@ of files or it can be paralleled using \code{furrr} functions.
 }
 \examples{
 
-# Using a path to a downloaded raw file
-\dontrun{
-vms_clean("VMS-data/VMS-data/RLMSEP_2019/1.- ENERO/01-10-ENE-2019.csv")
-}
-
 # Using sample dataset, or a data.frame already stored as an object
+# It is possible to use a path directly as argument
+
 data("sample_dataset")
 cleaned_vms <- vms_clean(sample_dataset)
 head(cleaned_vms)
+
 }
