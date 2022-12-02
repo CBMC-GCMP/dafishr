@@ -9,7 +9,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' preprocessing_vms(sample_dataset, destination.folder = tempdir())
+#' df <- fst::read_fst(paste0(tempdir(), "/vms_2019_1_1_10_preprocessed.fst"))
 #' model_vms(df)
 #' }
 model_vms <- function(df) {

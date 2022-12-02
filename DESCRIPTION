@@ -1,5 +1,5 @@
 Package: dafishr
-Title: Download, Wrangle, and Analyse VMS Data
+Title: Download, Wrangle, and Analyse Vessel Monitoring System Data
 Version: 1.0.0
 Authors@R: c(
     person("Fabio", "Favoretto", , "fabio@gocmarineprogram.org", role = c("aut", "cre"),
@@ -7,8 +7,8 @@ Authors@R: c(
     person("Eduardo", "Leon Solorzano", , "leonsol.eduardo@gmail.com", role = "ctb",
            comment = c(ORCID = "0000-0002-6493-4254"))
   )
-Description: Allows to download, clean and analyse raw VMS data from
-    Mexican government. You can use the `vms_download()` function to
+Description: Allows to download, clean and analyse raw Vessel Monitoring System, VMS, data from
+    Mexican government. You can use the vms_download() function to
     download raw data, or you can use the sample_dataset provided within
     the package. You can follow the tutorial in the vignette available at
     <https://cbmc-gcmp.github.io/dafishr/index.html>.
