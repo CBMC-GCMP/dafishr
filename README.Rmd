@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 <!-- badges: end -->
 
 The goal of `dafishr` is to provide an easy way to download Vessel Monitoring System (VMS)
-and analyse data from the Mexican Fishery Commission available at [Datos Abiertos](datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras) initiative. Within the package you can find tools that allows you to download VMS data, wrangle and clean raw data, and analyse tracks.
+and analyse data from the Mexican Fishery Commission available at [Datos Abiertos](https:://datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/) initiative. Within the package you can find tools that allows you to download VMS data, wrangle and clean raw data, and analyse tracks.
 
 The VMS stands for Vessel Monitoring System, which is adopted on industrial fishing vessels to monitor fishing activity. These data are very important to understand the fishing activity within a country, its dynamics in time and space, and to monitor the activity within Marine Protected Areas (MPAs). Along with data from VMS we also provide layers that are used to clean and map the information. We are currently working on a scientific manuscript which will be related to this work that is currently under review.
 
