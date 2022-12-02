@@ -17,7 +17,9 @@ This function uses \code{normalmixEM} from the \code{mixtools} package to model 
 Specifically, if the vessel was in a fishing activity or cruising
 }
 \examples{
-\dontrun{
+\donttest{
+preprocessing_vms(sample_dataset, destination.folder = tempdir())
+df <- fst::read_fst(paste0(tempdir(), "/vms_2019_1_1_10_preprocessed.fst"))
 model_vms(df)
 }
 }
