@@ -15,7 +15,7 @@ status](https://www.r-pkg.org/badges/version/dafishr)](https://CRAN.R-project.or
 The goal of `dafishr` is to provide an easy way to download Vessel
 Monitoring System (VMS) and analyse data from the Mexican Fishery
 Commission available at [Datos
-Abiertos](https://www.datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras/)
+Abiertos](datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras)
 initiative. Within the package you can find tools that allows you to
 download VMS data, wrangle and clean raw data, and analyse tracks.
 
