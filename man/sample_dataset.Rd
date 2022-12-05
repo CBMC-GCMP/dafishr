@@ -20,7 +20,7 @@ A \code{data.frame} with 10,000 rows and 9 columns.
 }
 }
 \source{
-\url{https://datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras}
+\url{https://www.datos.gob.mx/}
 }
 \usage{
 sample_dataset
