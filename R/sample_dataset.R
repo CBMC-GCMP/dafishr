@@ -15,6 +15,6 @@
 #'   \item{Rumbo}{Direction in degrees of the vessel at that specific time}
 #'   ...
 #' }
-#' @source \url{https://datos.gob.mx/busca/dataset/localizacion-y-monitoreo-satelital-de-embarcaciones-pesqueras}
+#' @source \url{https://www.datos.gob.mx/}
 
 "sample_dataset"
