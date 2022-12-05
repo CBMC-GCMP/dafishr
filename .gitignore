@@ -5,3 +5,6 @@
 .DS_Store
 inst/doc
 docs
+paper.md
+paper.bib
+paper.html
