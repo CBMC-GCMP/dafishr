@@ -9,7 +9,7 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/dafishr)](https://CRAN.R-project.org/package=dafishr)
-[![R-CMD-check](https://github.com/CBMC-GCMP/dafishr/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/CBMC-GCMP/dafishr/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
 The goal of `dafishr` is to provide an easy way to download Vessel
@@ -35,7 +35,11 @@ for details on its usage.
 
 ## Installation
 
-You can install `dafishr` with:
+``` r
+install.packages("dafishr")
+```
+
+You can install development version of `dafishr` with:
 
 ``` r
 # install.packages("devtools")
