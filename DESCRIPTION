@@ -4,8 +4,7 @@ Version: 1.0.0
 Authors@R: c(
     person("Fabio", "Favoretto", , "fabio@gocmarineprogram.org", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-6493-4254")),
-    person("Eduardo", "Leon Solorzano", , "leonsol.eduardo@gmail.com", role = "ctb",
-           comment = c(ORCID = "0000-0002-6493-4254"))
+    person("Eduardo", "Leon Solorzano", , "leonsol.eduardo@gmail.com", role = "ctb")
   )
 Description: Allows to download, clean and analyse raw Vessel Monitoring System, VMS, data from
     Mexican government. You can use the vms_download() function to
