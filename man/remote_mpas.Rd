@@ -14,7 +14,7 @@ A simple feature collection with 5 features and 2 fields
 }
 }
 \source{
-\url{http://sig.conanp.gob.mx/website/pagsig/info_shape.htm}
+\url{http://sig.conanp.gob.mx/}
 }
 \usage{
 remote_mpas

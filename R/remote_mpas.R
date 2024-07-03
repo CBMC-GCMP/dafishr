@@ -10,6 +10,6 @@
 #'   \item{geometry}{column containing geometry details}
 #'   ...
 #' }
-#' @source \url{http://sig.conanp.gob.mx/website/pagsig/info_shape.htm}
+#' @source \url{http://sig.conanp.gob.mx/}
 
 "remote_mpas"

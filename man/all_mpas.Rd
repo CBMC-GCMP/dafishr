@@ -17,7 +17,7 @@ A simple feature collection with 24 features and 5 fields
 }
 }
 \source{
-\url{http://sig.conanp.gob.mx/website/pagsig/info_shape.htm}
+\url{http://sig.conanp.gob.mx/}
 }
 \usage{
 all_mpas
